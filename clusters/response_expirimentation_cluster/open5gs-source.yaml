@@ -8,5 +8,4 @@ spec:
   interval: 1m0s
   ref:
     branch: master
-  url: https://github.com/Gradiant/openverso-charts
-
+  url: https://github.com/DISHDevEx/openverso-charts
