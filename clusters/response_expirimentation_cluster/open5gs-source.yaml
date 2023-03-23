@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: openverso
-  namespace: flux-system
+  namespace: default
 spec:
   interval: 1m0s
   ref:
