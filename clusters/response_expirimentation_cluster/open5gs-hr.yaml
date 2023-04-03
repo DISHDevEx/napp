@@ -14,9 +14,9 @@ spec:
         name: openverso
       valuesFrom:
         - kind: ConfigMap
-          name: 
+          name: 5gSA-values
           valuesKey: ./charts/respons/5gSA-values.yaml
-  interval: 1m0s
+  interval: 30s
   releaseName: open5gs
   targetNamespace: open5gs
 ---
@@ -35,8 +35,8 @@ spec:
         name: openverso
       valuesFrom:
         - kind: ConfigMap
-          name: 
+          name: gnb-ues-values
           valuesKey: ./charts/respons/gnb-ues-values.yaml
-  interval: 1m0s
+  interval: 30s
   releaseName: ueransim-gnb
   targetNamespace: open5gs
