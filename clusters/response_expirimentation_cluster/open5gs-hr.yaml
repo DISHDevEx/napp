@@ -12,6 +12,10 @@ spec:
       sourceRef:
         kind: GitRepository
         name: openverso
+      valuesFrom:
+        - kind: ConfigMap
+          name: 
+          valuesKey: ./charts/respons/5gSA-values.yaml
   interval: 1m0s
   releaseName: open5gs
   targetNamespace: open5gs
@@ -29,6 +33,10 @@ spec:
       sourceRef:
         kind: GitRepository
         name: openverso
+      valuesFrom:
+        - kind: ConfigMap
+          name: 
+          valuesKey: ./charts/respons/gnb-ues-values.yaml
   interval: 1m0s
   releaseName: ueransim-gnb
   targetNamespace: open5gs
