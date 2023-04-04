@@ -15,7 +15,7 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: cm-values-open5gs
-      valuesKey: ./charts/respons/5gSA-values.yaml
+      valuesKey: 5gSA-values.yaml
   values:
     replicaCount: 2  
   interval: 30s
@@ -38,7 +38,7 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: cm-values-ueransim-gnb
-      valuesKey: ./charts/respons/gnb-ues-values.yaml
+      valuesKey: gnb-ues-values.yaml
   values:
     replicaCount: 2 
   interval: 30s

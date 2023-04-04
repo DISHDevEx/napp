@@ -5,7 +5,7 @@ metadata:
   name: openverso
   namespace: default
 spec:
-  interval: 1m0s
+  interval: 30s
   ref:
     branch: master
   url: https://github.com/DISHDevEx/openverso-charts
