@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: open5gs
-  namespace: default
+  namespace: flux-system
 spec:
   chart:
     spec:
@@ -12,12 +12,12 @@ spec:
       sourceRef:
         kind: GitRepository
         name: openverso
-  valuesFrom:
-    - kind: ConfigMap
-      name: cm-values-open5gs
-      valuesKey: 5gSA-values.yaml
-  values:
-    replicaCount: 2  
+  # valuesFrom:
+  #   - kind: ConfigMap
+  #     name: cm-values-open5gs
+  #     valuesKey: 5gSA-values.yaml
+  # values:
+  #   replicaCount: 2  
   interval: 30s
   releaseName: open5gs
   targetNamespace: open5gs
@@ -26,7 +26,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: ueransim-gnb
-  namespace: default
+  namespace: flux-system
 spec:
   chart:
     spec:
@@ -35,12 +35,12 @@ spec:
       sourceRef:
         kind: GitRepository
         name: openverso
-  valuesFrom:
-    - kind: ConfigMap
-      name: cm-values-ueransim-gnb
-      valuesKey: gnb-ues-values.yaml
-  values:
-    replicaCount: 2 
+  # valuesFrom:
+  #   - kind: ConfigMap
+  #     name: cm-values-ueransim-gnb
+  #     valuesKey: gnb-ues-values.yaml
+  # values:
+  #   replicaCount: 2 
   interval: 30s
   releaseName: ueransim-gnb
   targetNamespace: open5gs
