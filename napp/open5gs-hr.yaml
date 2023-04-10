@@ -12,10 +12,10 @@ spec:
       sourceRef:
         kind: GitRepository
         name: openverso
-  valuesFrom:
-    - kind: ConfigMap
-      name: cm-values-open5gs
-      valuesKey: 5gSA_ues_values.yaml
+  # valuesFrom:
+  #   - kind: ConfigMap
+  #     name: cm-values-open5gs
+  #     valuesKey: 5gSA_ues_values.yaml
   # values:
   #   replicaCount: 2  
   interval: 30s
