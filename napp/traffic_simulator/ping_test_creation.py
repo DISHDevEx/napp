@@ -6,7 +6,9 @@ import random
 import json
 
 
-def write_ping_test(script_file = 'simulation_scripts/ping.sh', test_case_file ="test_case_values.json"):
+def write_ping_test(
+    script_file="simulation_scripts/ping.sh", test_case_file="test_case_values.json"
+):
     """
     Write test case that enables ue to ping webite pages repeatedly.
 
@@ -15,16 +17,14 @@ def write_ping_test(script_file = 'simulation_scripts/ping.sh', test_case_file =
         None.
 
     RETURNS
-    ------- 
+    -------
         None. Updates 'simulation_scripts/ping.sh'.
     """
 
     # Load test_case_values json to read in the test case parameters
     master_test_file = open(test_case_file)
     master_test_file = json.load(master_test_file)
-    data_emulation_values = master_test_file["testCases"][
-        "dataRequestEmulation"
-    ]
+    data_emulation_values = master_test_file["testCases"]["dataRequestEmulation"]
 
     list_of_websites_to_ping = data_emulation_values["websiteList"]
     num_ues = data_emulation_values["ueBatchSize"]
@@ -42,7 +42,7 @@ def write_ping_test(script_file = 'simulation_scripts/ping.sh', test_case_file =
         script.append(
             f"ping -I uesimtun{i} {rando_website} -s {packet_size_bytes} -i {interval} -c {num_of_pings} & \n"
         )
-        
+
     file_to_write = open(script_file, "w")
     file_to_write.writelines(script)
     file_to_write.close()
