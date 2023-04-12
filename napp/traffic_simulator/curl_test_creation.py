@@ -5,16 +5,19 @@ Module to create a script to emulate curl requests from UEs emulated via UERANSI
 import random
 import json
 
-def write_curl_test(script_file = "simulation_scripts/curl.sh", test_case_file ="test_case_values.json"):
+
+def write_curl_test(
+    script_file="simulation_scripts/curl.sh", test_case_file="test_case_values.json"
+):
     """
     Write test case that enables ue to curl webite pages repeatedly.
-    
+
     PARAMETERS
     ----------
         None.
 
     RETURNS
-    ------- 
+    -------
         None. Updates 'simulation_scripts/curl.sh'.
     """
 
