@@ -12,5 +12,5 @@ import pytest
 @pytest.fixture
 def test_case_json(request):
     file = pathlib.Path(request.node.fspath.strpath)
-    test_case_json = file.with_name('static_test_case_values.json')
+    test_case_json = file.with_name("static_test_case_values.json")
     return test_case_json
