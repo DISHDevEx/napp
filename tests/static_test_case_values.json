@@ -1,0 +1,13 @@
+{
+  "testCases": {
+    "dataRequestEmulation": {
+      "ueBatchSize": 1,
+      "numUEBatches":1,
+      "websiteList": [
+        "buzzfeed.com"
+      ],
+      "packet_size_bytes": 60000,
+      "num_of_pings": 10000
+    }
+  }
+}

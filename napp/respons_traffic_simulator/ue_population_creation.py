@@ -5,7 +5,7 @@ Module to create a script to populate the open5gs mongo db with the information 
 import json
 
 
-def write_populate_script():
+def write_populate_script(script_file = "simulation_scripts/ue_populate.sh", test_case_file ="test_case_values.json" ):
     """
     Write script that can be run inside of the populate pod in OPEN5GS to populate MongoDB.
 
@@ -19,7 +19,7 @@ def write_populate_script():
     """
 
     # Load test_case_values json to read in the test case paremeters.
-    master_test_file = open("test_case_values.json")
+    master_test_file = open(test_case_file)
     master_test_file = json.load(master_test_file)
     data_emulation_values = master_test_file["testCases"]["dataRequestEmulation"]
 
@@ -54,10 +54,10 @@ def write_populate_script():
         if i > 0 and i % 50 == 0:
             script.append("sleep 2 \n")
 
-    file_to_write = open("simulation_scripts/ue_populate.sh", "w")
+    file_to_write = open(script_file, "w")
     file_to_write.writelines(script)
     file_to_write.close()
-    print("ue_populate.sh written to simulation_scripts/ue_populate.sh")
+    print(f"ue_populate.sh written to {script_file}")
 
 
 if __name__ == "__main__":
