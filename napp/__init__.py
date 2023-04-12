@@ -1,3 +1,3 @@
-from .respons_traffic_simulator import write_curl_test
-from .respons_traffic_simulator import write_ping_test
-from .respons_traffic_simulator import write_populate_script
+from .traffic_simulator import write_curl_test
+from .traffic_simulator import write_ping_test
+from .traffic_simulator import write_populate_script
