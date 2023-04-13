@@ -17,6 +17,10 @@
 3. Create an EKS Cluster:
 
     Recommended settings: https://dish-wireless-network.atlassian.net/wiki/spaces/MSS/pages/427327690/Network+as+an+APP+deployment
+    
+4. In the sections below we are using a cluster that is named: "response_expirimentation_cluster". Feel free to replace this cluster name with your own. 
+
+5. If you already have OpenVerso resources deployed in your cluster, please clean them up and start fresh for this read me. 
 
 ### Network as App deployment (you have your EKS cluster and node group fired up):
 
