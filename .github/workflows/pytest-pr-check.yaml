@@ -1,16 +1,16 @@
 name: pytest-pr-check
-on: ##define when this pytest will be run
-  pull_request: ##run it on pull requests
+on: #Define when this pytest will be run.
+  pull_request: ##Run it on pull requests.
     branches: [main]
 env:
   AWS_REGION : ${{ secrets.AWS_REGION }}
-# permission can be added at job level or workflow level
+#Permission can be added at job level or workflow level
 permissions:
-      id-token: write   # This is required for requesting the JWT
-      contents: read    # This is required for actions/checkout
-##define all jobs here
+      id-token: write   #This is required for requesting the JWT.
+      contents: read    #This is required for actions/checkout.
+#Define all jobs here
 jobs:
-  ##this is our primary job: pytest
+  #This is our primary job: pytest.
   Pytest:
     runs-on: ubuntu-latest
     steps:
@@ -18,30 +18,28 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      ##here we are going to configure aws credentials
-      ## use the github workflows action: aws-actions
+      #Here we are going to configure aws credentials.
+      #Use the github workflows action: aws-actions.
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           role-session-name: ${{ secrets.ROLE_SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
-      # install dependancies for pytests
+      #Install dependancies for pytests.
       - name: Install dependencies
-        ## upgrade pip, install pytest, and all requirements. 
-        ##install github devex sdk
+        #Upgrade pip, install pytest, and all requirements. 
         run: |
           python -m pip install --upgrade pip
           pip install  pytest
           pip install -r requirements.txt
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      ## run the pytest module
+      #Run the pytest module.
       - name: Test with pytest
-        ## the environment in pytest gets passed some secrets from the github secrets
+        #The environment in pytest gets passed some secrets from the github secrets.
         env:
            ROLE_TO_ASSUME: ${{ secrets.ROLE_TO_ASSUME }}
            SAMPLE_ROLE_SESSION: ${{ secrets.ROLE_SESSION_NAME }}
            PYTEST_FLAG:  "True"
-        ##define some code here to also run during pytest
+        #Define some code here to also run during pytest.
         run: |
            pytest 
