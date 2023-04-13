@@ -20,7 +20,7 @@
     
 4. In the sections below we are using a cluster that is named: "response_expirimentation_cluster". Feel free to replace this cluster name with your own. 
 
-5. If you already have OpenVerso resources deployed in your cluster, please clean them up and start fresh for this read me. 
+5. If you already have OpenVerso resources deployed in your cluster, please clean them up and start fresh for this read me.
 
 ### Network as App deployment (you have your EKS cluster and node group fired up):
 
@@ -33,35 +33,39 @@
 
     (do this every time you want to talk to a new cluster)
 
-2. ensure your config file is set up correctly:
+2. Ensure your config file is set up correctly:
 
     ```console
     aws eks --region us-east-1 describe-cluster --name response_expirimentation_cluster --query cluster.status
     ```
 
-3. Create openverso namespace and set it to current namespace
-
+3. Create openverso namespace and set it to current namespace:
+    
     ```console
     kubectl create namespace openverso
     ```
-
+    
     ```console
     kubectl config set-context --current --namespace=openverso
     ```
+    
+    Troubleshooting:
+    "Error from server (AlreadyExists): namespaces "openverso" already exists" 
+        --> If the namespace already exists, this error will show and can be ignored.
 
-4. Add OpenVerso to helm
+4. Add OpenVerso to helm:
 
     ```console
     helm repo add openverso https://gradiant.github.io/openverso-charts/
     ```
 
-5. Deploy open5gs, using custom values from DishDevex
+5. Deploy open5gs, using custom values from DishDevex:
 
     ```console
     helm install open5gs openverso/open5gs --version 2.0.8 --values https://raw.githubusercontent.com/DISHDevEx/openverso-charts/master/charts/respons/5gSA_ues_values.yaml
     ```
 
-6. Deploy UERANSIM, using custom values from DishDevex
+6. Deploy UERANSIM, using custom values from DishDevex:
 
     ```console
     helm install ueransim-gnb openverso/ueransim-gnb --version 0.2.2 --values https://raw.githubusercontent.com/DISHDevEx/openverso-charts/master/charts/respons/gnb_ues_values.yaml
@@ -84,9 +88,11 @@
     ```console
     ping -I uesimtun6 google.com
     ```
+    This will ping in eternity. Please ``` ^c``` to exit the ping. 
     ```console
     traceroute -i uesimtun6 google.com
     ```
+    This inspects the hops the packet from the UE took to reach google.com.
     ```console
     curl --interface uesimtun6 https://www.google.com
     ```
