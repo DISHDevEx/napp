@@ -21,6 +21,7 @@
 4. In the sections below we are using a cluster that is named: "response_expirimentation_cluster". Feel free to replace this cluster name with your own. 
 
 
+
 5. If you already have OpenVerso resources deployed in your cluster, please clean them up and start fresh for this read me.
 
 ### Network as App deployment (please ensure you have your EKS cluster and node group fired up prior to beginning):
