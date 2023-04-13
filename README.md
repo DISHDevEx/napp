@@ -32,7 +32,7 @@
 2. ensure your config file is set up correctly:
 
     ```console
-    aws eks --region us-east-1 describe-cluster --name response_cluster --query cluster.status
+    aws eks --region us-east-1 describe-cluster --name response_expirimentation_cluster --query cluster.status
     ```
 
 3. Create openverso namespace and set it to current namespace
