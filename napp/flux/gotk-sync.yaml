@@ -1,0 +1,25 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: napp
+  namespace: default
+spec:
+  interval: 1m0s
+  ref:
+    branch: pierce/flux
+  timeout: 1m0s
+  url: https://github.com/DISHDevEx/napp.git
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: napp
+  namespace: default
+spec:
+  interval: 10m0s
+  path: ./napp/flux
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: napp
