@@ -40,7 +40,7 @@ def test_ping_script_creation(tmp_path, test_case_json):
     Test if the ping script correctly adds ping per UE to a .sh file.
     
     Parameters
-    -----------
+    ----------
         tmp_path: Fixture
             creates a temporary path that gets cleared post pytest.
         test_case_json: Fixture
@@ -63,12 +63,16 @@ def test_ping_script_creation(tmp_path, test_case_json):
 def test_curl_script_creation(tmp_path, test_case_json):
     """
     Test if the curl script correctly adds curl per UE to a .sh file.
-    Inputs:
+    
+    Parameters
+    ---------
         tmp_path: Fixture
             creates a temporary path that gets cleared post pytest.
         test_case_json: Fixture
             json file that simulates the actual test case json used in the traffic simulation.
-    Outputs: None (pytest)
+    Outputs
+    --------
+        None (pytest)
     """
     direct = tmp_path / "sub"
     direct.mkdir()
