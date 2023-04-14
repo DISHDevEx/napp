@@ -12,7 +12,7 @@
     - Helm
 
 
-2. Set up your local AWS CLI Environment Variables
+2. Set up your local AWS CLI Environment Variables.
 
 3. Create an EKS Cluster:
 
@@ -103,7 +103,7 @@
     exit
     ```
 
-5. Ensure Mongo DB is updated
+5. Ensure Mongo DB is updated:
 
     Enter open5gs-mongodb bash.
     ```console
@@ -113,7 +113,7 @@
     ```console
     mongo
     ```
-    Switch database to open5gs
+    Switch database to open5gs.
     ```console
     use open5gs
     ```
@@ -127,7 +127,7 @@
     exit
     ```
     
-6. Ensure all pods are running
+6. Ensure all pods are running:
 
     ```console
     kubectl get pods -n openverso
