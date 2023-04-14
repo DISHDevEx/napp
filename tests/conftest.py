@@ -1,6 +1,5 @@
 """
-Define fixtures and configuration
-that can be reused throughout pytest without redefinition.
+Define fixtures and configuration that can be reused throughout pytest without redefinition.
 It also defines the configurations for pytest.
 """
 
