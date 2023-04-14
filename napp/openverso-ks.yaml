@@ -10,5 +10,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: openverso-matt
-    namespace: openvefrso
+    namespace: openverso
   targetNamespace: openverso
