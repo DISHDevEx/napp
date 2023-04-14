@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: openverso-master
-  namespace: default
+  namespace: flux-system
 spec:
   interval: 30s
   ref:
@@ -14,7 +14,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: openverso-matt
-  namespace: default
+  namespace: flux-system
 spec:
   interval: 30s
   ref:
