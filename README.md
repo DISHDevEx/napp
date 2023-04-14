@@ -22,8 +22,7 @@
 
 5. If you already have OpenVerso resources deployed in your cluster, please clean them up and start fresh for this read me.
 
-### Network as App deployment (you have your EKS cluster and node group fired up):
-
+### Network as App deployment (please ensure you have your EKS cluster and node group fired up prior to beginning):
 
 1. Update local kubectl config file:
 
@@ -96,22 +95,36 @@
     ```console
     curl --interface uesimtun6 https://www.google.com
     ```
+    This will retrieve the source code for google.com webpage. 
 4. Exit the bash session and return to your local machine terminal.
+    ```console
+    exit
+    ```
 
 5. Ensure Mongo DB is updated
 
+    Enter open5gs-mongodb bash.
     ```console
     kubectl -n openverso exec deployment/open5gs-mongodb -ti -- bash
     ```
+    Open MongoDB by enter the following command.
     ```console
     mongo
     ```
+    Switch database to open5gs
     ```console
     use open5gs
     ```
+    Print UE information.
     ```console
     db.subscribers.find().pretty()
     ```
+    To exit: (need to exit twice)
+    ```console
+    exit
+    exit
+    ```
+    
 6. Ensure all pods are running
 
     ```console
