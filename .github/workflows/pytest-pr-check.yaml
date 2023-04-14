@@ -4,7 +4,7 @@ on: # Define when this pytest will be run.
     branches: [main]
 env:
   AWS_REGION : ${{ secrets.AWS_REGION }}
-# Permission can be added at job level or workflow level
+# Permission can be added at job level or workflow level.
 permissions:
       id-token: write   # This is required for requesting the JWT.
       contents: read    # This is required for actions/checkout.
@@ -42,4 +42,4 @@ jobs:
            PYTEST_FLAG:  "True"
         # Define some code here to also run during pytest.
         run: |
-           pytest 
+           pytest
