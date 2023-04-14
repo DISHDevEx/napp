@@ -1,12 +1,12 @@
-# NAPP - Network as APP
+# NAPP - Network as an APP
 
 
 ## Flux CD
 
 ### Introduction to Flux
+Flux is a Continuous Delivery tool for keeping Kubernetes clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there are new configurations to reconcile.
 
 For further reading on Flux CD, reference the [Flux Documentation](https://fluxcd.io/flux/).
-
 
 ### Getting Started with Flux
 #### Install Flux CLI on your Local Machine
@@ -20,20 +20,14 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 choco install flux
 ```
 ##### Other Operating Systems:
-For other 
+For alternative installation means, visit the [Flux Documentation on Installation](https://fluxcd.io/flux/installation/#install-the-flux-cli).
 
-### Uses of Flux
+### Installation of Flux in any Kubernetes namespace
 
-### Installation of Flux in the *default* namespace
-
-Flux defaults to a deployment in its own namespace, *flux-system*.  However, Flux can be deployed in any namespace.  The following series of commands succesfully deploys Flux in the *default* namespace, but these commands can be altered to install flux into any namespace on a Kubernetes cluster.
+Flux defaults to a deployment in its own namespace, *flux-system*.  However, Flux can be deployed in any namespace.  The following series of commands successfully deploys Flux in the *default* namespace, but these commands can be altered to install flux into any namespace on a Kubernetes cluster.
 
 #### Clone your repo to the local machine
-
-
-#### Create path for storage of Flux CD components
-
-
+Clone your *napp* repository to your local machine
 
 #### Generate the *gotk-components.yaml* 
 This *gotk-components.yaml* file is used to generate all the Flux Controllers when applied to the cluster.
@@ -78,7 +72,6 @@ flux create kustomization napp \
 ```
 
 #### Export the Kustomization and GitRepository objects to *gotk-sync.yaml*
-
 ```
 flux export source git napp \
   > ./napp/flux/gotk-sync.yaml \
@@ -90,13 +83,11 @@ flux export kustomization napp \
 ```
 
 #### Create the *kustomization.yaml* file
-
 ```
 cd ./napp/flux && kustomize create --autodetect
 ```
 
 #### Commit and push *kustomization.yaml* and synce manifests to repo
-
 ```
 git add -A && git commit -m "add sync manifests files" && git push
 ```
