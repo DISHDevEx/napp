@@ -9,7 +9,7 @@ def test_population_creation(tmp_path, test_case_json):
     Test if the population creation script correctly adds UEs with slice information.
     
     Parameters
-    -----------
+    --------
         tmp_path: Pytest fixture
             creates a temporary path that gets cleared post pytest.
         
@@ -40,7 +40,7 @@ def test_ping_script_creation(tmp_path, test_case_json):
     Test if the ping script correctly adds ping per UE to a .sh file.
     
     Parameters
-    ----------
+    --------
         tmp_path: Fixture
             creates a temporary path that gets cleared post pytest.
         test_case_json: Fixture
@@ -65,7 +65,7 @@ def test_curl_script_creation(tmp_path, test_case_json):
     Test if the curl script correctly adds curl per UE to a .sh file.
     
     Parameters
-    ---------
+    --------
         tmp_path: Fixture
             creates a temporary path that gets cleared post pytest.
         test_case_json: Fixture
