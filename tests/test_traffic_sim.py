@@ -82,4 +82,4 @@ def test_curl_script_creation(tmp_path, test_case_json):
 
     with open(test_file, "r") as read_file:
         script_truth = read_file.read()
-    assert "curl --output /dev/null --interface uesimtun0" in script_truth
+    assert "curl --output /dev/null --interface uesimtun0" in script_truth 
