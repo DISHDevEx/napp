@@ -59,13 +59,13 @@ helm -n openverso install open5gs openverso/open5gs --version 2.0.9 --values htt
 2. Populate (5 mins)
 
     2a. Open the terminal for the populate pod.
-
-```console
-kubectl -n openverso exec -ti deployment/open5gs-populate -- /bin/bash
-```
-
+    ```console
+    kubectl -n openverso exec -ti deployment/open5gs-populate -- /bin/bash
+    ```
     2b. Run population script.
-    Inside the terminal for the populate pod copy paste contents of  `openverso-charts/respons_ue_test_kit/simulation_scripts/ue_populate.sh`
+    ```console
+    Inside the terminal for the populate pod copy paste contents of openverso-charts/respons_ue_test_kit/simulation_scripts/ue_populate.sh
+    ```
 
 3. Install GNB in the namespace openverso (1 minute)
 ```console
