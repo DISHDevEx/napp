@@ -1,0 +1,14 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: open5gs
+  namespace: openverso
+spec:
+  interval: 30s
+  path: ./charts/kustomize
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: openverso-matt
+    namespace: openvefrso
+  targetNamespace: openverso
