@@ -1,5 +1,5 @@
 """
-Module to contain all tests pertaining to traffic simulator.
+Tests pertaining to traffic simulation are in this module.
 """
 from napp import write_populate_script, write_ping_test, write_curl_test
 
