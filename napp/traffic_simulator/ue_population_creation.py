@@ -7,24 +7,26 @@ import json
 
 def write_populate_script():
     """
-    Write script that to be run inside of the populate pod in OPEN5GS that populate MongoDB with UEs.
+    Write a script file that populates MongoDB with UEs.
+
     PARAMETERS
     ----------
         None.
+
     Returns
     -------
         None. Updates 'simulation_scripts/ue_populate.sh'.
     """
 
-    # Load test_case_values json to read in the test case paremeters.
+    # Load parameters file test_case_values.json.
     master_test_file = open("test_case_values.json")
     master_test_file = json.load(master_test_file)
     data_emulation_values = master_test_file["testCases"]["dataRequestEmulation"]
 
     population_size = (
-        data_emulation_values["ueBatchSize"] # 400
-        * data_emulation_values["numUEBatches"] # 2
-    ) # 800
+        data_emulation_values["ueBatchSize"] 
+        * data_emulation_values["numUEBatches"] 
+    ) 
 
     command = "open5gs-dbctl add_ue_with_slice" # to add a UE to the MongoDB. Arguemnts needed.
 
@@ -49,14 +51,14 @@ def write_populate_script():
 
     last_args_as_string = " ".join([key,opc,apn,sst,sd])
 
-    script = []
+    script_lines = []
 
-    # Add a line to the script for each UE we will add to MongoDB.
+    # Add one line to the script for each UE the script will add to MongoDB.
     for i in range(1, population_size + 1):
         # Sleep every 50 Adding a sleep line in the script to ensure mongodb doesnt crash from large requests.
         if i > 0 and i % 50 == 0:
-            script.append("sleep 2 \n")
-        script.append(
+            script_lines.append("sleep 2 \n")
+        script_lines.append(
             " ".join([command, 
                       str(initial_imsi + i),
                       last_args_as_string
@@ -64,7 +66,7 @@ def write_populate_script():
             )
 
     file_to_write = open("simulation_scripts/ue_populate.sh", "w")
-    file_to_write.writelines(script)
+    file_to_write.writelines(script_lines)
     file_to_write.close()
     print("Wrote file `simulation_scripts/ue_populate.sh`")
 
@@ -72,5 +74,5 @@ def write_populate_script():
 if __name__ == "__main__":
     try:
         write_populate_script()
-    except Exception as e:
-        print(e)
+    except Exception as exc:
+        print(exc)
