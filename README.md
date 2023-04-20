@@ -63,7 +63,7 @@
 5. Deploy open5gs, using custom values from DishDevex:
 
     ```console
-    helm install open5gs openverso/open5gs --version 2.0.8 --values https://raw.githubusercontent.com/DISHDevEx/openverso-charts/master/charts/respons/5gSA_ues_values.yaml
+    helm install open5gs openverso/open5gs --version 2.0.8 --values https://raw.githubusercontent.com/DISHDevEx/napp/main/napp/open5gs_values/5gSA_ues_values.yaml
     ```
 
 6. Deploy UERANSIM, using custom values from DishDevex:
