@@ -248,7 +248,7 @@ GitHub tokens can be obtained from the DishDevEx admin.  Apply the token with th
 export GITHUB_TOKEN=<github token>
 ```
 
-### 6. Bootstrap Flux to the Kubernetes Cluster
+### 7. Bootstrap Flux to the Kubernetes Cluster
 
 The following bootstrap command will generate the *.yaml* files needed to install Flux; these *.yaml* files are then stored in GitHub on the specified repository, branch, and path.  The bootstrap command then automatically applies these *.yaml* files to the Kubernetes cluster.  
 
@@ -275,7 +275,7 @@ Once this command is executed and complete, the GitHub repository structure will
             openverso-src.yaml
 ```
 
-### 7. Validate Installation
+### 8. Validate Installation
 
 To validate the installation of Flux, run the following health check on the kubernetes cluster, specifying the installed namespace:
 ```console
@@ -287,7 +287,7 @@ And then issue the following command to check all objects (GitObjects, and Kusto
 flux get all -A
 ```
 
-### 8. Uninstallation
+### 9. Uninstall Flux
 
 Flux can quickly be uninstalled, and all associated resources freed, using the following command:
 ```console
