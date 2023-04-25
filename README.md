@@ -179,7 +179,7 @@ Flux CD is to be installed on the Kubernetes cluster of your choice, but the con
 ```
 *cd* into the *flux* directory and create *openverso-ks.yaml* and *openverso-src.yaml*
 ```console
-cd napp/napp/flux && touch openverso-ks.yaml openverso-src.yaml
+cd napp/flux && touch openverso-ks.yaml openverso-src.yaml
 ```
 You will now have two empty *.yaml* files in the *flux directory.  The naming of these files is not specific, but the location of the files within the *flux* directory is necessary. 
 ```console
