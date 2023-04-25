@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: <desired name of GitRepository object>
+  namespace: openverso
+spec:
+  interval: 30s
+  ref:
+    branch: <branch name>
+  url: https://github.com/DISHDevEx/openverso-charts
