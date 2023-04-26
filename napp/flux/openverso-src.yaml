@@ -1,3 +1,4 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
@@ -8,3 +9,15 @@ spec:
   ref:
     branch: matt/gh_api_test
   url: https://github.com/DISHDevEx/openverso-charts
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: openverso-main
+  namespace: openverso
+spec:
+  interval: 30s
+  ref:
+    branch: main
+  url: https://github.com/DISHDevEx/openverso-charts
+---
