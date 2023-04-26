@@ -1,6 +1,6 @@
-### NAPP - Network as APP
+# NAPP - Network as an APP
 
-# Setting up Open5gs and UERansim with 10 UE's (EKS)
+## Setting up Open5gs and UERansim with 10 UE's (EKS)
 
 ### Pre-requisites:
 
