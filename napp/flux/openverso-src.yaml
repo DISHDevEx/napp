@@ -2,10 +2,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: openverso-matt
+  name: custom-openverso-values
   namespace: openverso
 spec:
   interval: 30s
   ref:
-    branch: matt/gh_api_test
-  url: https://github.com/DISHDevEx/openverso-charts
+    branch: agent-main
+  url: https://github.com/DISHDevEx/napp/tree/main/napp/open5gs_values
