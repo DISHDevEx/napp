@@ -22,11 +22,11 @@ amf:
       - 1
   resources:
     limits:
-      cpu: 69m
-      memory: 8Mi
+      cpu: 1m
+      memory: 16Mi
     requests:
-      cpu: 96m
-      memory: 9Mi
+      cpu: 10m
+      memory: 14Mi
 hss:
   enabled: false
 mme:
