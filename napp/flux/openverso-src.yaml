@@ -8,16 +8,3 @@ spec:
   ref:
     branch: agent-main
   url: https://github.com/DISHDevEx/napp
-
----
-
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: GitRepository
-metadata:
-  name: gradient-openverso-charts
-  namespace: openverso
-spec:
-  interval: 30s
-  ref:
-    branch: master
-  url: https://gradiant.github.io/openverso-charts/

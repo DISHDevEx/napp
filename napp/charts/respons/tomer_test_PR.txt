@@ -1,0 +1,77 @@
+amf:
+  config:
+    guamiList:
+    - amf_id:
+        region: 2
+        set: 1
+      plmn_id:
+        mcc: '999'
+        mnc: '70'
+    plmnList:
+    - plmn_id:
+        mcc: '999'
+        mnc: '70'
+      s_nssai:
+      - sd: '0x111111'
+        sst: 1
+    taiList:
+    - plmn_id:
+        mcc: '999'
+        mnc: '70'
+      tac:
+      - 1
+  resources:
+    limits:
+      cpu: 100m
+      memory: 33Mi
+    requests:
+      cpu: 100m
+      memory: 29Mi
+hss:
+  enabled: false
+mme:
+  enabled: false
+nssf:
+  config:
+    nsiList:
+    - nrf:
+        hostname: ''
+        port: 7777
+      sd: '0x111111'
+      sst: 1
+pcrf:
+  enabled: false
+populate:
+  enabled: true
+  initCommands:
+  - open5gs-dbctl add_ue_with_slice 999700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000002 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000003 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000005 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000006 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000007 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000008 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000009 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000010 465B5CE8B199B49FAA5F0A2EE238A6BC
+    E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+sgwc:
+  enabled: false
+sgwu:
+  enabled: false
+smf:
+  config:
+    pcrf:
+      enabled: false
+webui:
+  ingress:
+    enabled: false
