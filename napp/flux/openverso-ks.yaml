@@ -9,6 +9,6 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: custom-openverso-values
+    name: openverso-matt
     namespace: openverso
   targetNamespace: openverso
