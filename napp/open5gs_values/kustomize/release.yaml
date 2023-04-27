@@ -11,7 +11,7 @@ spec:
       chart: ./charts/open5gs
       sourceRef:
         kind: GitRepository
-        name: openverso-matt
+        name: openverso-custom-values
         namespace: openverso
   valuesFrom:
     - kind: ConfigMap
