@@ -8,7 +8,7 @@ spec:
   releaseName: open5gs
   chart:
     spec:
-      chart: ./charts/open5gs
+      chart: ./open5gs
       sourceRef:
         kind: GitRepository
         name: openverso-custom-values
