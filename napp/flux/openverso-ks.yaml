@@ -5,7 +5,7 @@ metadata:
   namespace: openverso
 spec:
   interval: 30s
-  path: ./kustomize
+  path: ./charts/kustomize
   prune: true
   sourceRef:
     kind: GitRepository
