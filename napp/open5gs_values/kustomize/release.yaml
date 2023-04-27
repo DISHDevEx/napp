@@ -8,10 +8,10 @@ spec:
   releaseName: open5gs
   chart:
     spec:
-      chart: ./napp/open5gs_values/open5gs
+      chart: ./charts/open5gs
       sourceRef:
         kind: GitRepository
-        name: openverso-custom-values
+        name: gradient-openverso-charts
         namespace: openverso
   valuesFrom:
     - kind: ConfigMap
