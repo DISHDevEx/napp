@@ -2,10 +2,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: custom-openverso-values
+  name: custom-openverso-values1
   namespace: openverso
 spec:
   interval: 30s
   ref:
     branch: agent-main
-  url: https://github.com/DISHDevEx/napp/tree/main/napp/open5gs_values
+  url: https://github.com/DISHDevEx/napp/tree/agent-main/napp/open5gs_values
