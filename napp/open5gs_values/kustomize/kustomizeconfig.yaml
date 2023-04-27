@@ -1,5 +1,8 @@
 nameReference:
 - kind: ConfigMap
+  metadata:
+    name: test
+    namespace: openverso
   version: v1
   fieldSpecs:
   - path: spec/valuesFrom/name

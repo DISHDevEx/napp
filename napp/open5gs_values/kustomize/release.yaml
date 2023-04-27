@@ -15,5 +15,5 @@ spec:
         namespace: openverso
   valuesFrom:
     - kind: ConfigMap
-      name: test.yaml
+      name: test
   targetNamespace: openverso
