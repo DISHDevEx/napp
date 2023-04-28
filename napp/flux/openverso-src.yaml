@@ -20,4 +20,4 @@ spec:
   interval: 30s
   ref:
     branch: master
-  url: https://github.com/Gradiant/openverso-charts
+  url: https://github.com/Gradiant/openverso-charts/tree/master/charts/open5gs
