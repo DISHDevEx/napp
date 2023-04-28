@@ -7,7 +7,7 @@ spec:
   interval: 30s
   ref:
     branch: agent-main
-  url: https://github.com/DISHDevEx/napp
+  url: https://github.com/DISHDevEx/napp/tree/agent-main/napp/open5gs_values
 
 ---
 
