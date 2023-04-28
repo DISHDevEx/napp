@@ -5,7 +5,7 @@ metadata:
   namespace: openverso
 spec:
   interval: 30s
-  releaseName: open5gs
+  releaseName: open5gs-gradiant
   chart:
     spec:
       chart: ./charts/open5gs
