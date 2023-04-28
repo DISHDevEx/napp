@@ -8,7 +8,7 @@ spec:
   releaseName: open5gs
   chart:
     spec:
-      chart: .
+      chart: ./charts/open5gs
       sourceRef:
         kind: GitRepository
         name: gradiant-openverso-charts
