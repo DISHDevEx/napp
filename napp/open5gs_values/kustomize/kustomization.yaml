@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - release.yaml
 configMapGenerator:
-  - name: test-values
+  - name: test-pierce
     files:
       - values.yaml=../test.yaml
 configurations:
