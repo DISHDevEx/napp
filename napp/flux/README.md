@@ -59,6 +59,34 @@ The *spec* field specifies the repository and branch that will be monitored by F
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
+  name: openverso-custom-values
+  namespace: openverso
+spec:
+  interval: 30s
+  ref:
+    branch: agent-main
+  url: https://github.com/DISHDevEx/napp/tree/agent-main/napp/open5gs_values
+
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: gradiant-openverso-charts
+  namespace: openverso
+spec:
+  interval: 30s
+  ref:
+    branch: master
+  url: https://github.com/Gradiant/openverso-charts
+
+
+
+
+
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
   name: <desired name of GitRepository object>
   namespace: openverso
 spec:
