@@ -15,5 +15,5 @@ spec:
         namespace: openverso
   valuesFrom:
     - kind: ConfigMap
-      name: test-pierce
+      name: test-values
   targetNamespace: openverso

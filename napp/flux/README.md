@@ -35,7 +35,8 @@ Flux CD is to be installed on the Kubernetes cluster of your choice, but the con
 ```console
 > napp
     > napp
-        > flux
+        * flux
+        > open5gs_values
 ```
 *cd* into the *flux* directory and create *openverso-ks.yaml* and *openverso-src.yaml*
 ```console
@@ -45,15 +46,16 @@ You will now have two empty *.yaml* files in the *flux directory.  The naming of
 ```console
 > napp
     > napp
-        > flux
+        * flux
             openverso-ks.yaml
             openverso-src.yaml
+        > open5gs_values
 ```
 ## 3. Build the *openverso-src.yaml* file
 
-**Note**: for simplicity, this tutorial is assuming that the following objects will be stored in the ***openverso*** namespace, so that these objects live next to the 5G core deployment.  If a different namespace is needed, specify it in the *.yaml* content in both the *openverso-src.yaml* and *openverso-ks.yaml* files.
+**Note**: for simplicity, this tutorial is assuming that the following objects will be stored in the ***openverso*** namespace, so that these objects live next to the 5G core deployment.  If a different namespace is needed, specify it in the below *.yaml* files.  It is further assumed that there is a need for two sources; one for the open5gs Helm deployment (pulled from [Gradiant/openverso-charts](https://github.com/Gradiant/openverso-charts)), and one source on the [DISHDevEx/napp](https://github.com/DISHDevEx/napp/tree/agent-main/napp/open5gs_values) for storing the custom values applied to the Gradiant/openverso-charts deployment.
 
-The *spec* field specifies the repository and branch that will be monitored by Flux for changes, as well as the interval that the repository is checked.  If multiple sources are desired to be reconciled against the Kubernetes cluster, than the below *.yaml* file can be replicated in the same *openverso-src.yaml* file to add additional sources.
+The *spec* field specifies the repository and branch that will be monitored by Flux for changes, as well as the interval that the repository is checked.  If multiple sources are desired to be reconciled against the Kubernetes cluster, than the below *.yaml* file can be replicated in the same *openverso-src.yaml* file to add additional sources.  For this example, the two sources Noted above are used.
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta2
@@ -79,21 +81,6 @@ spec:
   ref:
     branch: master
   url: https://github.com/Gradiant/openverso-charts
-
-
-
-
-
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: GitRepository
-metadata:
-  name: <desired name of GitRepository object>
-  namespace: openverso
-spec:
-  interval: 30s
-  ref:
-    branch: <branch name>
-  url: https://github.com/DISHDevEx/openverso-charts
 ```
 
 For more information on this process, reference the [Flux Documentation](https://fluxcd.io/flux/guides/helmreleases/#refer-to-values-in-configmaps-generated-with-kustomize) or the [Kubernetes Documentation](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/configmapgenerator/).
@@ -101,7 +88,7 @@ For more information on this process, reference the [Flux Documentation](https:/
 
 ## 4. Build the *openverso-ks.yaml* file
 
-**Note**: for simplicity, this tutorial is assuming that the following objects will be stored in the ***openverso*** namespace, so that these objects live next to the 5G core deployment.  If a different namespace is needed, specify it in the *.yaml* content in both the *openverso-src.yaml* and *openverso-ks.yaml* files.
+This files directs Flux towards the **kustomization** sources for the cluster.  The *./napp/open5g2_values/kustomize* directory and contained files are built out in following steps.
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -111,17 +98,99 @@ metadata:
   namespace: openverso
 spec:
   interval: 30s
-  path: ./charts/kustomize
+  path: ./napp/open5gs_values/kustomize
   prune: true
   sourceRef:
     kind: GitRepository
-    name: <name of GitRepository object declared in openverso-src.yaml>
+    name: openverso-custom-values
     namespace: openverso
   targetNamespace: openverso
 ```
-For more information on this process, reference the [Flux Documentation](https://fluxcd.io/flux/guides/helmreleases/#refer-to-values-in-configmaps-generated-with-kustomize) or the [Kubernetes Documentation](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/configmapgenerator/).
+## 5. Navigate to ***open5gs_values***
+Next, navigate to the *open5gs_values* directory 
+```console
+> napp
+    > napp
+        > flux
+        * open5gs_values
+            > kustomize
+              VALUES.yaml
+```
+***NOTE:*** In this directory, there are several *VALUES.yaml* files -- these are ConfigMap files that can be applied to the open5gs deployment on the cluster. Flux can be configured to either reconcile a single file, a whole directory, or entire repository against a K8s cluster.  As shown in the **openverso-src.yaml** above, this deployment of Flux is looking at two repositories -- the Gradiant/openverso-charts repository and the DISHDevEx/napp repository.  For the first repository, Gradiant/openverso-charts, the entire reposiory is being reconciled.  For the second source, DISHDevEx/napp, only a portion of the repository will be reconciled; specificaly, the *open5gs_values/kusomize/VALUES.yaml* file will be reconciled.  However, the following files can be modified to reconcile the entire *ope5gs_values/kustomize* directory. 
 
-## 5. Sign-in to Cluster
+## 6. Generate files in *kustomize* directory
+
+Issue the following command:
+
+```console
+cd kustomize && touch kustomization.yaml kustomizeconfig.yaml release.yaml
+```
+There will now be three blank yaml files in the *kustomize* directory:
+```console
+> napp
+    > napp
+        > flux
+        * open5gs_values
+            > kustomize
+                kustomization.yaml
+                kustomizeconfig.yaml
+                release.yaml
+              VALUES.yaml
+```
+## 7. Build the *kustomization.yaml* file
+
+A *Kustomization* object allows you to apply custom values to a Helm Release on your cluster.  For the *kustomization.yaml* file, use the below .yaml file and point the **configMapGenerator/files/values.yaml** feild towards the custom value file of your choosing.  If an entire directory is to be reconciled, then direct this same feild to a directory. 
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - release.yaml
+configMapGenerator:
+  - name: custom-values
+    files:
+      - values.yaml=../VALUES.yaml
+configurations:
+  - kustomizeconfig.yaml
+```
+
+## 8. Build the *kustomizeconfig.yaml* file 
+Build the *kustomizeconfig.yaml* file using the following yaml example:
+```yaml
+nameReference:
+- kind: ConfigMap
+  version: v1
+  fieldSpecs:
+  - path: spec/valuesFrom/name
+    kind: HelmRelease
+```
+
+## 9. Build the *release.yaml* file 
+
+Build the *release.yaml* file using the yaml example below.  This will create the Helm release on the cluster.  Note, the *chart* is being pulled from the **Gradiant/openverso-charts** source, while the *valuesFrom* is being pulled from the **custom-values** ConfigMap object which references the **DISHDevEx/napp** repo and pulls on the custom values held in **open5gs_values**. 
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: open5gs
+  namespace: openverso
+spec:
+  interval: 30s
+  releaseName: open5gs-gradiant
+  chart:
+    spec:
+      chart: ./charts/open5gs
+      sourceRef:
+        kind: GitRepository
+        name: gradiant-openverso-charts
+        namespace: openverso
+  valuesFrom:
+    - kind: ConfigMap
+      name: custom-values
+  targetNamespace: openverso
+```
+## 10. Sign-in to Cluster
 
 In a terminal, import AWS credentials, focus to appropriate cluster.
 
@@ -146,21 +215,22 @@ flux bootstrap github \
   --owner=<Github Organization Name> \
   --repository=<Name of Repository> \
   --branch=<Branch Name (defaults to *main*)> \
-  --path=<Path to *flux* directory in repository
+  --path=<Path to *flux* directory in repository>
 ```
 
-Once this command is executed and complete, the GitHub repository structure will look as follows:
+Once this command is executed and complete, the GitHub repository structure will look as follows with the generated Flux yaml files:
 
 ```console
 > napp
     > napp
-        > flux
+        * flux
             > <Desired Namespace>
                 gotk-components.yaml
                 gotk-sync.yaml
                 kustomization.yaml
             openverso-ks.yaml
             openverso-src.yaml
+        > open5gs_values
 ```
 
 ## 8. Validate Installation
@@ -169,7 +239,7 @@ To validate the installation of Flux, run the following health check on the kube
 ```console
 flux check -n <Desired Namespace>
 ```
-And then issue the following command to check all objects (GitObjects, and Kustomization Objects) on the cluster associated with the Flux installation:
+And then issue the following command to check all objects (GitObjects, and Kustomization Objects, ConfigMap Object, etc) on the cluster associated with the Flux installation and the above *.yaml* files:
 
 ```console
 flux get all -A
@@ -179,7 +249,5 @@ flux get all -A
 
 Flux can quickly be uninstalled, and all associated resources freed, using the following command:
 ```console
-flux uninstall -n <Desired Namespace>
+flux uninstall --keep-namespace -n <Desired Namespace>
 ```
-
-***Please Note***: the above command does attempt to remove the namespace that Flux is installed in.  If there are other resources in the namespace, not associated with Flux, Kubernetes will likely not allow the removal of the namespace; but it is something to keep in mind. 
