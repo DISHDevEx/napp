@@ -1,3 +1,12 @@
+ausf:
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+bsf:
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+nrf:
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+pcf:
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+
 hss:
   enabled: false
 
@@ -11,6 +20,7 @@ smf:
   config:
     pcrf:
       enabled: false
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
 
 sgwc:
   enabled: false
@@ -39,6 +49,35 @@ amf:
         s_nssai:
           - sst: 1
             sd: "0x111111"
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+
+udr:
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+
+udm:
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+
+upf:
+  replicaCount: 2
+  topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: DoNotSchedule
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/instance: open5gs
+        app.kubernetes.io/name: upf
+        helm.sh/chart: upf-2.0.6
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: upfInstanceSize
+            operator: In
+            values:
+            - Large
+#  nodeSelector: {upfInstanceSize: Large}
 
 nssf:
   config:
@@ -48,10 +87,14 @@ nssf:
           port: 7777
         sst: 1
         sd: "0x111111"
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
 
 webui:
+  enabled: false
   ingress:
     enabled: false
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
 
 populate:
   enabled: true
+  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
