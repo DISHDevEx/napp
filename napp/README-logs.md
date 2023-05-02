@@ -111,6 +111,8 @@ exists for prometheus but named slightly differently
     ```
 
 ### Deploy Prometheus Stack
+Here is the link to all available metrics: https://kubernetes.io/docs/reference/instrumentation/metrics/
+
 ## Pre-requisites: 
 Enable OIDC for the cluster: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 1. Set up Permissions, Roles, Policies:
@@ -223,6 +225,21 @@ kubectl delete pods prometheus-kube-prometheus-prometheus-0 -n <cluster_namespac
 kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <cluster_namespace> --tail=20
 ```
 
+11. How to read these blocks in S3:
+    1. download go https://go.dev/dl/
+    2. we will be utilizing this to create the nested jsons: https://github.com/ryotarai/prometheus-tsdb-dump/tree/master so follow the installation instructions:
+
+    ```console
+    $ git clone https://github.com/ryotarai/prometheus-tsdb-dump.git
+    $ cd prometheus-tsdb-dump
+    $ make build
+    ```
+
+    3. Utilizing the path of the S3 block then run:
+
+    ```console
+    go run main.go -block "/Users/lauren.mieczkowski/Desktop/GitHub/TSDB/01GZ1XX33XFGEMKP8Q92WFTZ8F" -format victoriametrics
+    ```
 
 
 
