@@ -1,9 +1,6 @@
 amf:
   hostname: open5gs-amf-ngap
 
-gnb:
-  hostname: ueransim-gnb
-
 mcc: '999'
 mnc: '70'
 key: 465B5CE8B199B49FAA5F0A2EE238A6BC
@@ -20,6 +17,8 @@ apnList:
       sst: 1
       sd: "0x111111"
     emergency: false
+
+nodeSelector: {eks.amazonaws.com/nodegroup: gnb}
 
 ues:
   enabled: false
