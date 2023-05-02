@@ -61,6 +61,8 @@
     helm upgrade --install loki-stack grafana/loki-stack \
     --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
     ```
+ 
+5.1 Update Values of Fluentbit and Loki:
 
 6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
 

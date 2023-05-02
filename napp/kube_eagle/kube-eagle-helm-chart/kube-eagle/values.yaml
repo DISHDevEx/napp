@@ -1,0 +1,83 @@
+# Default values for kube-eagle.
+replicaCount: 1
+
+image:
+  repository: quay.io/google-cloud-tools/kube-eagle
+  tag: 1.1.4
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+podAnnotations: {}
+
+# Create and use role based access resources
+rbac:
+  create: true
+
+serviceAccountName: sa-kube-eagle
+
+priorityClassName: ""
+
+# Healthness and readiness probes need relatively large timeouts because they query the kubernetes master
+readinessProbe:
+  timeoutSeconds: 5
+
+livenessProbe:
+  timeoutSeconds: 5
+
+# Kube Eagle specific settings
+telemetry:
+  host: 0.0.0.0
+  port: 8080
+
+metricsNamespace: eagle
+
+logLevel: info
+
+podSecurityContext:
+  runAsUser: 99
+  fsGroup: 99
+containerSecurityContext: {}
+
+# Create ServiceMonitor custom resource required for Prometheus Operator to scrape the service
+serviceMonitor:
+  create: false
+  interval: 10s
+  scrapeTimeout: 10s
+  # By default, Prometheus Operator uses its own Release label as the selector for ServiceMonitors.
+  # Update this to match the release name of your Prometheus Operator installation if 
+  # you aren't using custom match labels on your Prometheus definition.
+  releaseLabel: prometheus-operator
+  # Additional labels to add to the ServiceMonitor in case Prometheus Operator is configured with 
+  # different matchLabels configuration, to make sure it matches this ServiceMonitor.
+  # If this is defined, the release label of the service monitor will match kube-eagle's one
+  additionalLabels: 
+
+env: {}
+  # Add ability to include more opinionated environment variables
+  # - name: POD_IP
+  #   valueFrom:
+  #     fieldRef:
+  #       fieldPath: status.podIP
+  # - name: SERVICE_8000_NAME
+  #   value: metrics-server-exporter 
