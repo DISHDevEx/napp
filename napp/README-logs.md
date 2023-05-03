@@ -62,7 +62,12 @@
     --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
     ```
  
-5.1 Update Values of Fluentbit and Loki:
+    5.1 Update Values of Fluentbit and Loki with custom values for application, host, dataplane and control plane configurations:
+
+    ```console
+    waiting for cp config fix to include- initially JSON parsing error for api-server messages because they are not in JSON format.  
+    ```
+
 
 6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
 
