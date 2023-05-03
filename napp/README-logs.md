@@ -39,10 +39,10 @@
     aws eks --region us-east-1 describe-cluster --name response_expirimentation_cluster --query cluster.status
     ```
 
-3. Go to default namespace:
+3. Go to m-and-m namespace:
     
     ```console
-    kubectl config set-context --current --namespace=default
+    kubectl config set-context --current --namespace=m-and-m
     ```
 
 4. Add Loki-Stack to helm:
@@ -67,13 +67,13 @@
 6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
 
     ```console
-    kubectl get secret --namespace default loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+    kubectl get secret --namespace m-and-m loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
     ```
 
 7. Port Forward Grafana:
 
     ```console
-    kubectl port-forward --namespace default service/loki-stack-grafana 3000:80
+    kubectl port-forward --namespace m-and-m service/loki-stack-grafana 3000:80
     ```
 
 8. In your browser, go to localhost:3000 and login with:
@@ -87,14 +87,14 @@ password: password from step 6
 
 ### Deploy Kube Eagle
 Pre-requisites: 
-kube-metrics-server must exist. if needed, deploy in the right cluster and default namespace:
+kube-metrics-server must exist. if needed, deploy in the right cluster and m-and-m namespace:
 exists for prometheus but named slightly differently
 
     ```console
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
     ```
 
-1. Guarantee you are in the right cluster and default namespace and then add the kube-eagle helm chart:
+1. Guarantee you are in the right cluster and m-and-m namespace and then add the kube-eagle helm chart:
 
     ```console
     helm repo add kube-eagle https://raw.githubusercontent.com/cloudworkz/kube-eagle-helm-chart/master
