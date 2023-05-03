@@ -9,11 +9,11 @@ spec:
   chart:
     spec:
       chart: ./charts/open5gs
+      version: '2.0.8'
       sourceRef:
         kind: GitRepository
         name: gradiant-openverso-charts
         namespace: openverso
-  version: '2.0.8'
   valuesFrom:
     - kind: ConfigMap
       name: test-pierce
