@@ -87,8 +87,7 @@ password: password from step 6
 
 ### Deploy Kube Eagle
 Pre-requisites: 
-kube-metrics-server must exist. if needed, deploy in the right cluster and m-and-m namespace:
-exists for prometheus but named slightly differently
+kube-metrics-server must exist. If needed, deploy in the right cluster and m-and-m namespace. Metrics server may already exists for prometheus but will be named slightly differently. 
 
     ```console
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
