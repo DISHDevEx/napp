@@ -22,10 +22,7 @@ apnList:
       sd: "0x111111"
     emergency: false
 
-nodeSelector: {eks.amazonaws.com/nodegroup: gnb}
-
 ues:
   enabled: true
-  nodeSelector: {eks.amazonaws.com/nodegroup: ues}
   count: 10
   initialMSISDN: '0000000001'
