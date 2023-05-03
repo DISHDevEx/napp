@@ -31,4 +31,4 @@ spec:
   interval: 30s
   ref:
     branch: master
-  url: https://gradiant.github.io/openverso-charts/
+  url: https://github.com/Gradiant/openverso-charts
