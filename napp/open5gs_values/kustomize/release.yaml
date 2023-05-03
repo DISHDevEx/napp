@@ -4,16 +4,16 @@ metadata:
   name: open5gs
   namespace: openverso
 spec:
-  interval: 30s
   releaseName: open5gs
   chart:
     spec:
       chart: ./charts/open5gs
-      version: 2.0.8
       sourceRef:
         kind: GitRepository
         name: gradiant-openverso-charts
         namespace: openverso
+      version: 2.0.8
+  interval: 30s
   valuesFrom:
     - kind: ConfigMap
       name: test-pierce
