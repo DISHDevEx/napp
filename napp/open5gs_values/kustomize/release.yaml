@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: ./charts/open5gs
-      version: "2.0.8"
+      version: '2.0.8'
       sourceRef:
         kind: GitRepository
         name: gradiant-openverso-charts
