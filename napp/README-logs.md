@@ -155,11 +155,12 @@ Create an IAM policy to attach to Role used by worker nodes OR allow S3 full per
 
     ]
 
-}```
+}
+    ```
 
 Create a user to authenticate the S3 bucket.
 ```console
-Jingda will explain to me today
+Jingda will explain to me today and I will fill in.
 ```
 
 2. Alter S3 bucket configuration as needed:
@@ -230,15 +231,15 @@ kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <clust
     2. we will be utilizing this to create the nested jsons: https://github.com/ryotarai/prometheus-tsdb-dump/tree/master so follow the installation instructions:
 
     ```console
-    $ git clone https://github.com/ryotarai/prometheus-tsdb-dump.git
-    $ cd prometheus-tsdb-dump
-    $ make build
+    git clone https://github.com/ryotarai/prometheus-tsdb-dump.git
+    cd prometheus-tsdb-dump
+    make build
     ```
 
-    3. Utilizing the path of the S3 block then run:
+    3. Utilizing the path to the folder of the S3 block that might look similar to "01GZ1XX33XFGEMKP8Q92WFTZ8" then run:
 
     ```console
-    go run main.go -block "/Users/lauren.mieczkowski/Desktop/GitHub/TSDB/01GZ1XX33XFGEMKP8Q92WFTZ8F" -format victoriametrics
+    go run main.go -block <file path to TSDB folder> -format victoriametrics
     ```
 
 
