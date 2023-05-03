@@ -31,4 +31,6 @@ metadata:
   namespace: openverso
 spec:
   interval: 30s
+  ref:
+    branch: master
   url: https://gradiant.github.io/openverso-charts/
