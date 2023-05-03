@@ -11,13 +11,24 @@ spec:
 
 ---
 
+# apiVersion: source.toolkit.fluxcd.io/v1beta2
+# kind: GitRepository
+# metadata:
+#   name: gradiant-openverso-charts
+#   namespace: openverso
+# spec:
+#   interval: 30s
+#   ref:
+#     branch: master
+#   url: https://github.com/Gradiant/openverso-charts
+
+---
+
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: GitRepository
+kind: HelmRepository
 metadata:
   name: gradiant-openverso-charts
   namespace: openverso
 spec:
   interval: 30s
-  ref:
-    branch: master
-  url: https://github.com/Gradiant/openverso-charts
+  url: https://gradiant.github.io/openverso-charts/
