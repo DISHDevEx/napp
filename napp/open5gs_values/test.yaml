@@ -1,0 +1,58 @@
+amf:
+  config:
+    guamiList:
+    - amf_id:
+        region: 2
+        set: 1
+      plmn_id:
+        mcc: '999'
+        mnc: '70'
+    plmnList:
+    - plmn_id:
+        mcc: '999'
+        mnc: '70'
+      s_nssai:
+      - sd: '0x111111'
+        sst: 1
+    taiList:
+    - plmn_id:
+        mcc: '999'
+        mnc: '70'
+      tac:
+      - 1
+  resources:
+    limits:
+      cpu: 150m
+      memory: 11Mi
+    requests:
+      cpu: 90m
+      memory: 10Mi
+hss:
+  enabled: false
+mme:
+  enabled: false
+nssf:
+  config:
+    nsiList:
+    - nrf:
+        hostname: ''
+        port: 7777
+      sd: '0x111111'
+      sst: 1
+pcrf:
+  enabled: false
+populate:
+  enabled: true
+
+sgwc:
+  enabled: false
+sgwu:
+  enabled: false
+smf:
+  config:
+    pcrf:
+      enabled: false
+webui:
+  enabled: false
+  ingress:
+    enabled: false

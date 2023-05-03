@@ -5,10 +5,10 @@ metadata:
   namespace: openverso
 spec:
   interval: 30s
-  path: ./charts/kustomize
+  path: ./napp/open5gs_values/kustomize
   prune: true
   sourceRef:
     kind: GitRepository
-    name: openverso-matt
+    name: openverso-custom-values
     namespace: openverso
   targetNamespace: openverso
