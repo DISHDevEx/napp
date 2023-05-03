@@ -31,7 +31,7 @@ spec:
     spec:
       chart: ./charts/open5gs
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: gradiant-openverso-charts
       version: 2.0.8
   interval: 30s
