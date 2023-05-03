@@ -59,15 +59,17 @@ udm:
 
 upf:
   replicaCount: 2
-  topologySpreadConstraints:
-  - maxSkew: 1
-    topologyKey: kubernetes.io/hostname
-    whenUnsatisfiable: DoNotSchedule
-    labelSelector:
-      matchLabels:
-        app.kubernetes.io/instance: open5gs
-        app.kubernetes.io/name: upf
-        helm.sh/chart: upf-2.0.6
+# uncomment below lines to add topology spread constraints for scheduling pods
+#  topologySpreadConstraints:
+#  - maxSkew: 1
+#    topologyKey: kubernetes.io/hostname
+#    whenUnsatisfiable: DoNotSchedule
+#    labelSelector:
+#      matchLabels:
+#        app.kubernetes.io/instance: open5gs
+#        app.kubernetes.io/name: upf
+#        helm.sh/chart: upf-2.0.6
+  # affinity logic to deploy pods in multiple nodegroups
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -77,7 +79,6 @@ upf:
             operator: In
             values:
             - Large
-#  nodeSelector: {upfInstanceSize: Large}
 
 nssf:
   config:
