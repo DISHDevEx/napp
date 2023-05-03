@@ -23,7 +23,7 @@ spec:
 #   url: https://github.com/Gradiant/openverso-charts
 
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
+kind: GitRepository
 metadata:
   name: gradiant-openverso-charts
   namespace: openverso
