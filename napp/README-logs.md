@@ -183,7 +183,7 @@ prefix: <bucket_prefix>
 
 3. Alter values file as necessary. The following edits have been made: enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name. 
 
-4. Can either run the script or follow the below steps:
+4. Follow the below steps which deploy-prometheus.sh also follows:
 
 ```console 
 
@@ -230,7 +230,13 @@ kubectl delete pods prometheus-kube-prometheus-prometheus-0 -n <cluster_namespac
 kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <cluster_namespace> --tail=20
 ```
 
-11. How to read these blocks in S3:
+11. Explore Prometheus UI:
+
+```console
+kubectl --namespace=<cluster_namespace> port-forward deploy/prometheus-kube-prometheus-prometheus-0 9090
+```
+
+12. How to read these blocks in S3:
     1. download go https://go.dev/dl/
     2. we will be utilizing this to create the nested jsons: https://github.com/ryotarai/prometheus-tsdb-dump/tree/master so follow the installation instructions:
 
@@ -240,10 +246,10 @@ kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <clust
     make build
     ```
 
-    3. Utilizing the path to the folder of the S3 block that might look similar to "01GZ1XX33XFGEMKP8Q92WFTZ8" then run:
+    3. Exploring from local- utiilize the path to the folder of the S3 block that might look similar to "01GZ1XX33XFGEMKP8Q92WFTZ8" then run:
 
     ```console
-    go run main.go -block <file path to TSDB folder> -format victoriametrics
+    go run main.go -block <file path to TSDB folder> -format victoriametrics > metrics.json
     ```
 
 
