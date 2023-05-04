@@ -233,7 +233,7 @@ kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <clust
 11. Explore Prometheus UI:
 
 ```console
-kubectl --namespace=<cluster_namespace> port-forward deploy/prometheus-kube-prometheus-prometheus-0 9090
+kubectl --namespace=<cluster_namespace> port-forward deploy/kube-prometheus-prometheus 9090
 ```
 
 12. How to read these blocks in S3:
