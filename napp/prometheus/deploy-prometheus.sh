@@ -7,10 +7,10 @@ cluster_region=$2
 cluster_namespace=$3
 script_full_path=$(dirname "$0")
 echo "full path: $script_full_path"
-install_values_filepath=script_full_path/values.yaml
+install_values_filepath=$script_full_path/values.yaml
 echo "full path: $install_values_filepath"
-s3_storage_config_filepath=script_full_path/thanos-storage-config.yaml
-prom_storage_config_filepath=script_full_path/prometheus-storage-class.yaml
+s3_storage_config_filepath=$script_full_path/thanos-storage-config.yaml
+prom_storage_config_filepath=$script_full_path/prometheus-storage-class.yaml
 
 #Set the context for the right cluster and namespace
 aws eks update-kubeconfig --region $cluster_region --name $cluster_name
