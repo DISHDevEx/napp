@@ -5,6 +5,6 @@ resources:
 configMapGenerator:
   - name: custom-values
     files:
-      - values.yaml=../test.yaml
+      - values.yaml=../5gSA_ues_values.yaml
 configurations:
   - kustomizeconfig.yaml
