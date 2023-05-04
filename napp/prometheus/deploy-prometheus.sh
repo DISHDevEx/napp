@@ -1,4 +1,4 @@
-us-eas#!/bin/bash
+#!/bin/bash
 
 #To get user input for cluster name, namespace, region, files:
 script_name=$0
@@ -6,9 +6,7 @@ cluster_name=$1
 cluster_region=$2
 cluster_namespace=$3
 script_full_path=$(dirname "$0")
-echo "full path: $script_full_path"
 install_values_filepath=$script_full_path/values.yaml
-echo "full path: $install_values_filepath"
 s3_storage_config_filepath=$script_full_path/thanos-storage-config.yaml
 prom_storage_config_filepath=$script_full_path/prometheus-storage-class.yaml
 

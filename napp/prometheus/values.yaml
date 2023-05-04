@@ -2150,7 +2150,7 @@ kubelet:
 blackboxExporter:
   ## @param blackboxExporter.enabled Enable Blackbox Exporter deployment
   ##
-  enabled: true
+  enabled: false
   ## Bitnami Alertmanager image version
   ## ref: https://hub.docker.com/r/bitnami/prometheus-operator/tags/
   ## @param blackboxExporter.image.registry Blackbox Exporter image registry
