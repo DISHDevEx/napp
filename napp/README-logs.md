@@ -86,7 +86,7 @@ username: admin
 password: password from step 6
 
 
-9. Select add first data source and use: http://loki-stack:3000/
+9. Select add first data source and use: http://loki-stack:3100/
 
 
 
@@ -233,7 +233,7 @@ kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <clust
 11. Explore Prometheus UI:
 
 ```console
-kubectl --namespace=<cluster_namespace> port-forward deploy/kube-prometheus-prometheus 9090
+ kubectl port-forward --namespace <cluster_namespace> svc/kube-prometheus-prometheus 9090:9090
 ```
 
 12. How to read these blocks in S3:
