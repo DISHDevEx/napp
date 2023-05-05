@@ -18,17 +18,13 @@
 
     Recommended settings: https://dish-wireless-network.atlassian.net/wiki/spaces/MSS/pages/427327690/Network+as+an+APP+deployment
     
-4. In the sections below we are using a cluster that is named: "response_expirimentation_cluster". Feel free to replace this cluster name with your own. 
-
-
-5. OpenVerso resources deployed in your cluster, 
 
 ### Deploy the Loki-Stack that includes FluentBit, Loki and Grafana:
 
 1. Update local kubectl config file:
 
     ```console
-    aws eks --region us-east-1 update-kubeconfig --name response_expirimentation_cluster
+    aws eks --region <aws_region> update-kubeconfig --name <cluster_name>
     ```
 
     (do this every time you want to talk to a new cluster)
@@ -36,13 +32,13 @@
 2. Ensure your config file is set up correctly:
 
     ```console
-    aws eks --region us-east-1 describe-cluster --name response_expirimentation_cluster --query cluster.status
+    aws eks --region <aws_region> describe-cluster --name <cluster_name> --query cluster.status
     ```
 
-3. Go to m-and-m namespace:
+3. Set relevant namespace as context:
     
     ```console
-    kubectl config set-context --current --namespace=m-and-m
+    kubectl config set-context --current --namespace=<cluster_namespace>
     ```
 
 4. Add Loki-Stack to helm:
@@ -65,20 +61,21 @@
     5.1 Update Values of Fluentbit and Loki with custom values for application, host, dataplane and control plane configurations:
 
     ```console
-    waiting for cp config fix to include- initially JSON parsing error for api-server messages because they are not in JSON format.  
-    ```
 
+    helm upgrade loki-stack -f <install_values_filepath> grafana/loki-stack -n <cluster_namespace>
+      
+    ```
 
 6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
 
     ```console
-    kubectl get secret --namespace m-and-m loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+    kubectl get secret --namespace lokitest loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
     ```
 
 7. Port Forward Grafana:
 
     ```console
-    kubectl port-forward --namespace m-and-m service/loki-stack-grafana 3000:80
+    kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 3000:80
     ```
 
 8. In your browser, go to localhost:3000 and login with:
@@ -120,7 +117,7 @@ Here is the link to all available metrics: https://kubernetes.io/docs/reference/
 ## Pre-requisites: 
 Enable OIDC for the cluster: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 1. Set up Permissions, Roles, Policies:
-Create an IAM policy to attach to Role used by worker nodes OR allow S3 full permission.
+Create an IAM policy to attach to Role used by worker nodes.
 
     ```console
     {
@@ -236,7 +233,14 @@ kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <clust
  kubectl port-forward --namespace <cluster_namespace> svc/kube-prometheus-prometheus 9090:9090
 ```
 
-12. How to read these blocks in S3:
+12. Add Prometheus to Grafana:
+
+```console
+tbd
+```
+
+
+13. How to read these blocks in S3:
     1. download go https://go.dev/dl/
     2. we will be utilizing this to create the nested jsons: https://github.com/ryotarai/prometheus-tsdb-dump/tree/master so follow the installation instructions:
 
