@@ -4,7 +4,7 @@ metadata:
   name: open5gs
   namespace: openverso
 spec:
-  interval: 30s
+  interval: 30h
   releaseName: open5gs
   chart:
     spec:
