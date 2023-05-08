@@ -112,10 +112,12 @@ kube-metrics-server must exist. If needed, deploy in the right cluster and m-and
     ```
 
 ### Deploy Prometheus Stack
-Here is the link to all available metrics: https://kubernetes.io/docs/reference/instrumentation/metrics/
+Here is the link to some of the available metrics: https://kubernetes.io/docs/reference/instrumentation/metrics/ 
+https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/ref/cn-cloud-native-k8-metric-list.html
+
 
 ## Pre-requisites: 
-Enable OIDC for the cluster: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
+
 1. Set up Permissions, Roles, Policies:
 Create an IAM policy to attach to Role used by worker nodes.
 
@@ -178,7 +180,7 @@ prefix: <bucket_prefix>
 
 ```
 
-3. Alter values file as necessary. The following edits have been made: enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name. 
+3. Alter values file as necessary. The following edits have been made: enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name, and changed scraping interval from the default 1m to 30s. 
 
 4. Follow the below steps which deploy-prometheus.sh also follows:
 
@@ -235,9 +237,15 @@ kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <clust
 
 12. Add Prometheus to Grafana:
 
+    12.1 Port forward grafana
+
 ```console
-tbd
+kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 3000:80
 ```
+    12.2 Go to localhost:3000 in your browser. 
+    12.3 Next add the data source- use the ip address of "prometheus-kube-prometheus-prometheus" in the HTTP URL: "http://<IP ADDRESS of prometheus server>:9090"
+    12.4 Save and test. It should give a success message. 
+
 
 
 13. How to read these blocks in S3:

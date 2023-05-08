@@ -22,8 +22,13 @@ kubectl apply -f $prom_storage_config_filepath -n $cluster_namespace
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 
+#add cluster name into filepath
+
+export cluster_name=$cluster_name
+yq e -i ".prefix= \"prometheus_metrics/$cluster_name\"" /Users/lauren.mieczkowski/Documents/experimentchange.yml
+
 #Creating a secret for the S3 bucket configuration
-kubectl -n $cluster_namespace create secret generic thanos-objstore-config --from-literal=cluster_name=$cluster_name --from-file=thanos.yaml=$s3_storage_config_filepath
+kubectl create secret generic thanos-objstore-config --from-file=thanos.yaml=/Users/lauren.mieczkowski/Desktop/GitHub/napp_new/napp/napp/prometheus/thanos-storage-config.yaml
 
 #Deploy Prometheus with Thanos Sidecar and wait for successful creation
 helm install kube-prometheus -f $install_values_filepath bitnami/kube-prometheus -n $cluster_namespace
