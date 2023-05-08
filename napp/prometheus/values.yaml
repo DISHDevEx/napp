@@ -1,4 +1,4 @@
-##TOTAL CHANGES: enable thanos sidecar creation, disable compaction, change retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name
+##TOTAL CHANGES: enable thanos sidecar creation, disable compaction, change retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name. Changed prometheus.scrapeInterval to 30s
 ##COULD CHANGE: prometheus replica count, prometheus limits and requests, log level to debug 
 ##
 ## @section Global parameters
@@ -826,8 +826,8 @@ prometheus:
   ##
   tolerations: []
   ## @param prometheus.scrapeInterval Interval between consecutive scrapes
-  ##
-  scrapeInterval: ""
+  ##default is 1m, changed to 30s
+  scrapeInterval: 30s
   ## @param prometheus.evaluationInterval Interval between consecutive evaluations
   ##
   evaluationInterval: ""
