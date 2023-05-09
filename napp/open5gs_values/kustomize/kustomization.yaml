@@ -2,9 +2,16 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - release.yaml
+  - open5gs_hpa_upf_custom.yaml
 configMapGenerator:
-  - name: test-pierce
+  - name: custom-values
     files:
-      - values.yaml=../test.yaml
+      - values.yaml=../5gSA_no_ues_values.yaml
+#patches:
+#  - target:
+#       kind: HorizontalPodAutoscaler
+#       namespace: openverso
+#    path: open5gs_hpa_upf_custom.yaml
+
 configurations:
   - kustomizeconfig.yaml
