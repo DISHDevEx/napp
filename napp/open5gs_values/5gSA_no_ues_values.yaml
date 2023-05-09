@@ -40,6 +40,9 @@ amf:
           - sst: 1
             sd: "0x111111"
 
+upf:
+  replicaCount: 3
+
 nssf:
   config:
     nsiList:
