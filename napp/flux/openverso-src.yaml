@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: agent-main
+    branch: aakash/hpa-kustomize
   url: https://github.com/DISHDevEx/napp
 
 ---
@@ -19,5 +19,5 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: master
+    tag: open5gs-2.0.8
   url: https://github.com/Gradiant/openverso-charts
