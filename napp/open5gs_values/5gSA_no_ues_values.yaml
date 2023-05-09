@@ -1,17 +1,23 @@
 hss:
   enabled: false
+
 mme:
   enabled: false
+
 pcrf:
   enabled: false
+
 smf:
   config:
     pcrf:
       enabled: false
+
 sgwc:
   enabled: false
+
 sgwu:
   enabled: false
+
 amf:
   config:
     guamiList:
@@ -45,6 +51,7 @@ nssf:
           port: 7777
         sst: 1
         sd: "0x111111"
+
 webui:
   ingress:
     enabled: false
