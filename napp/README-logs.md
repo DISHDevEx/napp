@@ -62,7 +62,7 @@ sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace
     --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
     ```
  
-    5.1 Update Values of Fluentbit and Loki with custom values for application, host, dataplane and control plane configurations:
+    6.1 Update Values of Fluentbit and Loki with custom values for application, host, dataplane and control plane configurations:
 
     ```console
 
