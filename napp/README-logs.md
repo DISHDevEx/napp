@@ -41,7 +41,13 @@
     kubectl config set-context --current --namespace=<cluster_namespace>
     ```
 
-4. Add Loki-Stack to helm:
+4. Follow the below steps or use script deploy-loki.sh:
+
+```console 
+
+sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace 
+
+Add Loki-Stack to helm:
 
     ```console
     helm repo add grafana https://grafana.github.io/helm-charts
@@ -69,7 +75,7 @@
 6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
 
     ```console
-    kubectl get secret --namespace lokitest loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+    kubectl get secret --namespace <cluster_namespace> loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
     ```
 
 7. Port Forward Grafana:
@@ -163,10 +169,10 @@ Create an IAM policy to attach to Role used by worker nodes.
 
 Create a user to authenticate the S3 bucket.
 ```console
-Jingda will explain to me today and I will fill in.
+Please reach out if necessary to create another user.
 ```
 
-2. Alter S3 bucket configuration as needed:
+2. Alter S3 bucket configuration as needed- specific details for our team are not in this repo:
 
 ```console
 
@@ -180,9 +186,10 @@ prefix: <bucket_prefix>
 
 ```
 
-3. Alter values file as necessary. The following edits have been made: enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name, and changed scraping interval from the default 1m to 30s. 
+3. Alter values file as necessary. The following edits have been made: 
+-enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name, and changed scraping interval from the default 1m to 30s. We can change replicas of prometheus to 2 and sharding for better query performance in the future.
 
-4. Follow the below steps which deploy-prometheus.sh also follows:
+4. Follow the below steps or utilize deploy-prometheus.sh:
 
 ```console 
 
@@ -243,9 +250,11 @@ kubectl logs prometheus-kube-prometheus-prometheus-0 -c thanos-sidecar -n <clust
 kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 3000:80
 ```
     12.2 Go to localhost:3000 in your browser. 
-    12.3 Next add the data source- use the ip address of "prometheus-kube-prometheus-prometheus" in the HTTP URL: "http://<IP ADDRESS of prometheus server>:9090"
+    12.3 Next add the data source- use the pod ip address of "prometheus-kube-prometheus-prometheus" in the HTTP URL: "http://<IP ADDRESS of prometheus server>:9090"
     12.4 Save and test. It should give a success message. 
+    12.5 Create a networking dashboard with prometheus: 
 
+        - Could utilize grafana dashboard Kubernetes / Networking / Pod: ID 12661
 
 
 13. How to read these blocks in S3:
