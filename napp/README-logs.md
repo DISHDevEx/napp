@@ -85,37 +85,16 @@ Add Loki-Stack to helm:
     ```
 
 8. In your browser, go to localhost:3000 and login with:
-username: admin
-password: password from step 6
+    - username: admin
+    - password: <password from step 6>
 
 
 9. Select add first data source and use: http://loki-stack:3100/
+    -Go to the explore page and select your data source. 
+    -Documentation exists here: https://grafana.com/docs/loki/latest/logql/
+    -Here is an example query; {container="gnodeb"} |= "UE[111]"
+    -HINTS: Edit your queries outside of grafana and paste inside- otherwise you might run into errors. Execute with shift + return. 
 
-
-
-### Deploy Kube Eagle
-Pre-requisites: 
-kube-metrics-server must exist. If needed, deploy in the right cluster and m-and-m namespace. Metrics server may already exists for prometheus but will be named slightly differently. 
-
-    ```console
-    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-    ```
-
-1. Guarantee you are in the right cluster and m-and-m namespace and then add the kube-eagle helm chart:
-
-    ```console
-    helm repo add kube-eagle https://raw.githubusercontent.com/cloudworkz/kube-eagle-helm-chart/master
-    ```
-2. helm update:
-
-    ```console
-    helm repo update
-    ```
-3. Install Kube Eagle:
-
-    ```console
-    helm install kube-eagle kube-eagle/kube-eagle
-    ```
 
 ### Deploy Prometheus Stack
 Here is the link to some of the available metrics: https://kubernetes.io/docs/reference/instrumentation/metrics/ 
@@ -272,6 +251,32 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
     ```console
     go run main.go -block <file path to TSDB folder> -format victoriametrics > metrics.json
     ```
+
+### Deploy Kube Eagle
+Pre-requisites: 
+kube-metrics-server must exist. If needed, deploy in the right cluster and m-and-m namespace. Metrics server may already exists for prometheus but will be named slightly differently. 
+
+    ```console
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    ```
+
+1. Guarantee you are in the right cluster and m-and-m namespace and then add the kube-eagle helm chart:
+
+    ```console
+    helm repo add kube-eagle https://raw.githubusercontent.com/cloudworkz/kube-eagle-helm-chart/master
+    ```
+2. helm update:
+
+    ```console
+    helm repo update
+    ```
+3. Install Kube Eagle:
+
+    ```console
+    helm install kube-eagle kube-eagle/kube-eagle
+    ```
+
+
 
 
 
