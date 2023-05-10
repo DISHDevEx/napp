@@ -88,10 +88,11 @@ sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace
 
 
 10. Select add first data source and use: http://loki-stack:3100/
-    -Go to the explore page and select your data source. 
-    -Documentation exists here: https://grafana.com/docs/loki/latest/logql/
-    -Here is an example query; {container="gnodeb"} |= "UE[111]"
-    -HINTS: Edit your queries outside of grafana and paste inside- otherwise you might run into errors. Execute with shift + return. 
+
+    - Go to the explore page and select your data source. 
+    - Documentation exists here: https://grafana.com/docs/loki/latest/logql/
+    - Here is an example query; {container="gnodeb"} |= "UE[111]"
+    - HINTS: Edit your queries outside of grafana and paste inside- otherwise you might run into errors. Execute with shift + return. 
 
 
 ### Deploy Prometheus Stack
