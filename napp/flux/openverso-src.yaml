@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: akash/hpa-nodegroups
+    branch: aakash/hpa-nodegroups
   url: https://github.com/DISHDevEx/napp
 
 ---
