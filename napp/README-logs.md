@@ -96,8 +96,10 @@ sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace
 
 
 ### Deploy Prometheus Stack
-Here is the link to some of the available metrics: https://kubernetes.io/docs/reference/instrumentation/metrics/ 
-https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/ref/cn-cloud-native-k8-metric-list.html
+Here are links to some of the available metrics: 
+- https://kubernetes.io/docs/reference/instrumentation/metrics/ 
+- https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/ref/cn-cloud-native-k8-metric-list.html
+- You can view all available metrics by pressing the icon that resembles the earth next to where you enter you queries.
 
 
 ## Pre-requisites: 
