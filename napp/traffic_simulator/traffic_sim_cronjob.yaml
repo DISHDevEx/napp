@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: traffic-sim-automator
 spec:
-  schedule: "31 * * * *"
+  schedule: "* * * * *"
   jobTemplate:
     spec:
       template:
