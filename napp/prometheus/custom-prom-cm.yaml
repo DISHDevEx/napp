@@ -52,6 +52,12 @@ clusterDomain: cluster.local
 ##
 
 operator:
+
+  thanos:
+    #blockSize: 3m
+    #BlockDuration: 3m
+    #blockSize: "3m"
+    #BlockDuration: "3m"
   ## @param operator.enabled Deploy Prometheus Operator to the cluster
   ##
   enabled: true
@@ -509,6 +515,15 @@ operator:
 ## Deploy a Prometheus instance
 ##
 prometheus:
+  # trying to change max and min tsdb block 
+  #blockSize: 3m
+
+  configMapReload: 
+    prometheus:
+      extraVolumeDirs:
+        #"storage.tsdb.min-block-duration": "5m" 
+        #"storage.tsdb.min-block-duration": "5m"
+      
   ## @param prometheus.enabled Deploy Prometheus to the cluster
   ##
   enabled: true
@@ -1113,11 +1128,14 @@ prometheus:
   ## @param prometheus.additionalArgs Allows setting additional arguments for the Prometheus container
   ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.Prometheus
   ##from og to this
+  #BlockDuration: 
+      #blockSize: 3m
+  #blockSize: 3m
   additionalArgs:
-  #- name: storage.tsdb.min-block-duration
-  # value: 2m
-  #- name: storage.tsdb.max-block-duration
-  #  value: 2m
+    #- name: "storage.tsdb.min-block-duration"
+      #value: "4m"
+    #- name: "storage.tsdb.max-block-duration"
+      #value: "4m"
     
   additionalPrometheusRules: []
   ## Note that the prometheus will fail to provision if the correct secret does not exist.
@@ -1170,6 +1188,21 @@ prometheus:
   ## Thanos sidecar container configuration
   ##
   thanos:
+    ##
+  #blockSize: 3m
+    #blockSize: 3m
+  #
+    #BlockDuration: 3m
+  #BlockDuration="3m"
+    #BlockDuration: 
+      #blockSize: 3m
+  #blockSize="3m"
+  #BlockDuration: "3m"
+  #blockSize: "3m"
+    #BlockDuration="3m"
+  #BlockDuration: "3m"
+    #blockSize: "3m"
+    #blockSize="3m"
     ## @param prometheus.thanos.create Create a Thanos sidecar container
     ##CHANGED: from false to true
     create: true 
@@ -1215,6 +1248,13 @@ prometheus:
       capabilities:
         drop:
           - ALL
+    ##
+    Args:
+      #BlockDuration: 3m
+      #blockSize: 3m
+      #- --storage.tsdb.max-block-duration=3m
+      #- --storage.tsdb.min-block-duration=3m
+    
     ## @param prometheus.thanos.prometheusUrl Override default prometheus url `http://localhost:9090`
     ##
     prometheusUrl: ""
@@ -1224,6 +1264,8 @@ prometheus:
     ## - --tsdb.path=/data/
     ##
     extraArgs:
+      #- --storage.tsdb.min-block-duration=5m
+      #- --storage.tsdb.max-block-duration=5m
     #- --log.level=debug
     #- "--log.level=debug"
     ## @param prometheus.thanos.objectStorageConfig Support mounting a Secret for the objectStorageConfig of the sideCar container.
