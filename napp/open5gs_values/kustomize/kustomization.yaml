@@ -6,7 +6,7 @@ resources:
 configMapGenerator:
   - name: custom-values
     files:
-      - values.yaml=../5gSA_no_ues_values.yaml
+      - values.yaml=../5gSA_no_ues_values_with_nodegroups.yaml
 #patches:
 #  - target:
 #       kind: HorizontalPodAutoscaler
