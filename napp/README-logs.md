@@ -52,9 +52,6 @@ Add Loki-Stack to helm:
 
     ```console
     helm repo add grafana https://grafana.github.io/helm-charts
-    ```
-
-    ```console
     helm repo update
     ```
 
