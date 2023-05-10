@@ -1,11 +1,11 @@
 ausf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 bsf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 nrf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 pcf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 hss:
   enabled: false
@@ -20,7 +20,7 @@ smf:
   config:
     pcrf:
       enabled: false
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 sgwc:
   enabled: false
@@ -49,13 +49,13 @@ amf:
         s_nssai:
           - sst: 1
             sd: "0x111111"
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 udr:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 udm:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 upf:
   replicaCount: 2
@@ -88,14 +88,14 @@ nssf:
           port: 7777
         sst: 1
         sd: "0x111111"
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 webui:
   enabled: false
   ingress:
     enabled: false
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 populate:
   enabled: true
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
