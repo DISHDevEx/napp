@@ -46,6 +46,7 @@
 ```console 
 
 sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace 
+```
 
 Add Loki-Stack to helm:
 
@@ -251,6 +252,7 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
     ```console
     go run main.go -block <file path to TSDB folder> -format victoriametrics > metrics.json
     ```
+
 
 ### Deploy Kube Eagle
 Pre-requisites: 
