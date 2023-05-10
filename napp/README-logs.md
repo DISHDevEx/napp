@@ -144,8 +144,7 @@ Create an IAM policy to attach to Role used by worker nodes.
 
     ]
 
-}
-    
+    }
     ```
 
 Create a user to authenticate the S3 bucket.
