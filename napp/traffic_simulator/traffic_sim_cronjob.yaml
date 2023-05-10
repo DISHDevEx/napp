@@ -1,27 +1,23 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: ue-populate
+  name: traffic-sim-automator
 spec:
   schedule: "31 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
-          serviceAccountName: load-gen-serviceaccount
+          serviceAccountName: traffic-sim
           containers:
           - name: load
             image: juampynr/digital-ocean-cronjob:latest
             command: ["/bin/bash","-c"]
             args:
                - |
-                 echo -e "print1"
                  apt-get update -y
-                 echo -e "print2"
                  apt-get install -y iputils-ping
-                 echo -e "print3"
                  which ping
-                 echo -e "print4"
                  kubectl -n openverso exec -i deployment/ueransim-ues-first-batch -- /bin/bash -c "ping -I uesimtun0 foxnews.com  -s 60000 -i 5 -c 10000 &
                  ping -I uesimtun1 bostonherald.com  -s 60000 -i 4 -c 10000 &
                  ping -I uesimtun2 washingtonpost.com  -s 60000 -i 5 -c 10000 &
