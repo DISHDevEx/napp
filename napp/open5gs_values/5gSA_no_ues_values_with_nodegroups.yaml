@@ -65,7 +65,7 @@ upf:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
             - matchExpressions:
-              - key: role
+              - key: eks.amazonaws.com/nodegroup
                 operator: In
                 values:
                   - cluster-autoscaling-ng
@@ -75,10 +75,10 @@ upf:
       requiredDuringSchedulingIgnoredDuringExecution:
         - labelSelector:
             matchExpressions:
-              - key: app
+              - key: app.kubernetes.io/name
                 operator: In
                 values:
-                  - open5gs-upf
+                  - upf
           topologyKey: kubernetes.io/hostname
           namespaces:
             - openverso
