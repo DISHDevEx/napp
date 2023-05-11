@@ -80,10 +80,6 @@ upf:
             operator: In
             values:
             - Large
-            0:
-              key: upfInstanceSize
-              operator: In
-              values: Large
   replicaCount: 2
 webui:
   enabled: false
