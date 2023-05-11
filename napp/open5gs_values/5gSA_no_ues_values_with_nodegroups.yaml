@@ -78,8 +78,8 @@ upf:
         - matchExpressions:
             key: upfInstanceSize
             operator: In
-            values: !!set
-              Large: null
+            values:
+            - Large
             0:
               key: upfInstanceSize
               operator: In
