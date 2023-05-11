@@ -59,6 +59,29 @@ udm:
 
 upf:
   replicaCount: 2
+  # ensure each UPF is only scheduled to nodes in the "cluster-autoscaling-ng" node group
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+            - matchExpressions:
+              - key: role
+                operator: In
+                values:
+                  - cluster-autoscaling-ng
+
+    # ensure each node in the "cluster-autoscaling-ng" node group only has one UPF
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - open5gs-upf
+          topologyKey: kubernetes.io/hostname
+          namespaces:
+            - openverso
 # uncomment below line to select single node
 #  nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
 
@@ -73,15 +96,16 @@ upf:
 #        app.kubernetes.io/name: upf
 #        helm.sh/chart: upf-2.0.6
   # affinity logic to deploy pods in multiple nodegroups
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: upfInstanceSize
-            operator: In
-            values:
-            - Large
+#  affinity:
+#    nodeAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        nodeSelectorTerms:
+#        - matchExpressions:
+#          - key: upfInstanceSize
+#            operator: In
+#            values:
+#            - Large
+
 
 nssf:
   config:
