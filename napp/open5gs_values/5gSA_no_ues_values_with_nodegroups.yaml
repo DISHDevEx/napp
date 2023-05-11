@@ -58,7 +58,7 @@ udm:
   nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 upf:
-  replicaCount: 1
+  replicaCount: 2
 # uncomment below line to select single node
 #  nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
 
