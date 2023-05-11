@@ -58,7 +58,7 @@ udm:
   nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 upf:
-  replicaCount: 3
+  replicaCount: 2
   nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
 # uncomment below lines to add topology spread constraints for scheduling pods
 #  topologySpreadConstraints:
