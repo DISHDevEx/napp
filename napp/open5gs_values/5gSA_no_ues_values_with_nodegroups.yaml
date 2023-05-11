@@ -59,7 +59,9 @@ udm:
 
 upf:
   replicaCount: 2
-  nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
+# uncomment below line to select single node
+#  nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
+
 # uncomment below lines to add topology spread constraints for scheduling pods
 #  topologySpreadConstraints:
 #  - maxSkew: 1
@@ -71,15 +73,15 @@ upf:
 #        app.kubernetes.io/name: upf
 #        helm.sh/chart: upf-2.0.6
   # affinity logic to deploy pods in multiple nodegroups
-#  affinity:
-#    nodeAffinity:
-#      requiredDuringSchedulingIgnoredDuringExecution:
-#        nodeSelectorTerms:
-#        - matchExpressions:
-#          - key: upfInstanceSize
-#            operator: In
-#            values:
-#            - Large
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: upfInstanceSize
+            operator: In
+            values:
+            - Large
 
 nssf:
   config:
