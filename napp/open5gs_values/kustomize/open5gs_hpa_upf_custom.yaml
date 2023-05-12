@@ -17,10 +17,10 @@ spec:
   - resource:
       name: cpu
       target:
-        averageUtilization: 80
+        averageUtilization: 1
         type: Utilization
     type: Resource
-  minReplicas: 2
+  minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment

@@ -1,11 +1,11 @@
 ausf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 bsf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 nrf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 pcf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 hss:
   enabled: false
@@ -20,7 +20,7 @@ smf:
   config:
     pcrf:
       enabled: false
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 sgwc:
   enabled: false
@@ -49,16 +49,42 @@ amf:
         s_nssai:
           - sst: 1
             sd: "0x111111"
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 udr:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 udm:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 upf:
-  replicaCount: 2
+  replicaCount: 1
+#  # ensure each UPF is only scheduled to nodes in the "cluster-autoscaling-ng" node group
+#  affinity:
+#    nodeAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: eks.amazonaws.com/nodegroup
+#                operator: In
+#                values:
+#                  - cluster-autoscaling-ng
+#
+#    # ensure each node in the "cluster-autoscaling-ng" node group only has one UPF
+#    podAntiAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        - labelSelector:
+#            matchExpressions:
+#              - key: app.kubernetes.io/name
+#                operator: In
+#                values:
+#                  - upf
+#          topologyKey: kubernetes.io/hostname
+#          namespaces:
+#            - openverso
+# uncomment below line to select single node
+#  nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
+
 # uncomment below lines to add topology spread constraints for scheduling pods
 #  topologySpreadConstraints:
 #  - maxSkew: 1
@@ -80,6 +106,7 @@ upf:
             values:
             - Large
 
+
 nssf:
   config:
     nsiList:
@@ -88,14 +115,14 @@ nssf:
           port: 7777
         sst: 1
         sd: "0x111111"
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 webui:
   enabled: false
   ingress:
     enabled: false
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 populate:
   enabled: true
-  nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
