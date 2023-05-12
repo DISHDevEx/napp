@@ -1,6 +1,6 @@
 name: ueransim-ues-first-batch
 
-count: 2
+count: 450
 initialMSISDN: '0000000001'
 mcc: '999'
 mnc: '70'
