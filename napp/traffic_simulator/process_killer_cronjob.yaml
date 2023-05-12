@@ -18,8 +18,5 @@ spec:
                  apt-get update -y
                  apt-get install -y iputils-ping
                  which ping
-                 kubectl -n openverso exec -i deployment/ueransim-ues-first-batch -- /bin/bash -c "
-                 which ping
-                 ps
-                 pkill ping"
+                 kubectl -n openverso exec -i deployment/ueransim-ues-first-batch -- /bin/bash -c "pgrep -f 'ping' | xargs kill -15"
           restartPolicy: OnFailure
