@@ -152,6 +152,7 @@ https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
 
 traffic sim cronjob needs access to all the pods in the cluster. Service account, clusterrole and clusterrolebinding objects need to be created to get the required access for the cronjob.
 
+Run the top 3 commands only once when you are setting up the cronjob's in new cluster.
 ```console
 kubectl apply -f traffic_sim_serviceaccount.yaml
 
