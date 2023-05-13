@@ -21,20 +21,20 @@ amf:
       tac:
       - 1
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 ausf:
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 bsf:
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 hss:
   enabled: false
 mme:
   enabled: false
 nrf:
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 nssf:
   config:
     nsiList:
@@ -44,16 +44,16 @@ nssf:
       sd: '0x111111'
       sst: 1
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 pcf:
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 pcrf:
   enabled: false
 populate:
   enabled: true
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 sgwc:
   enabled: false
 sgwu:
@@ -63,13 +63,13 @@ smf:
     pcrf:
       enabled: false
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 udm:
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 udr:
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
 upf:
   affinity:
     nodeAffinity:
@@ -80,10 +80,10 @@ upf:
             operator: In
             values:
             - Small
-  replicaCount: 2
+  replicaCount: 1
 webui:
   enabled: false
   ingress:
     enabled: false
   nodeSelector:
-    eks.amazonaws.com/nodegroup: control_plane
+    eks.amazonaws.com/nodegroup: control-plane
