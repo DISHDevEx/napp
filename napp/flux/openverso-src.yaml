@@ -19,5 +19,5 @@ metadata:
 spec:
   interval: 30s
   ref:
-    tag: open5gs-2.0.8
+    tag: open5gs-2.0.9
   url: https://github.com/Gradiant/openverso-charts
