@@ -67,7 +67,7 @@ upf:
           - key: upfInstanceSize
             operator: In
             values:
-            - Small
+            - Large
 
 nssf:
   config:
