@@ -80,7 +80,7 @@ upf:
             operator: In
             values:
             - Large
-  replicaCount: 1
+  replicaCount: 2
 webui:
   enabled: false
   ingress:
