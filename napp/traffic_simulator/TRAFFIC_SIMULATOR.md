@@ -147,10 +147,10 @@ respons_ue_test_kit/simulation_scripts/ping.sh
 ```
 
 ### Traffic Sim Automator & Process killer Setup
-traffic sim is automated using kubernetes cronjob, below link provides steps on how to setup a cronjob.
+Traffic sim is automated using kubernetes cronjob, below link provides steps on how to setup a cronjob.
 https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
 
-traffic sim cronjob needs access to all the pods in the cluster. Service account, clusterrole and clusterrolebinding objects need to be created to get the required access for the cronjob.
+Traffic sim cronjob needs access to all the pods in the cluster. Service account, clusterrole and clusterrolebinding objects need to be created to get the required access for the cronjob.
 
 Run the top 3 commands only once when you are setting up the cronjob's in new cluster.
 ```console
@@ -168,7 +168,7 @@ kubectl apply -f process_killer_cronjob.yaml
 ### Trouble shooting section
 Often times with such a large amount of UE's deployed in the app, you may face common issues such as segementation faults.
 
-Try restarting certain applications to get them back online and connected
+Try restarting certain applications to get them back online and connected.
 
 ```console
 kubectl rollout restart deployment ueransim-gnb -n openverso
