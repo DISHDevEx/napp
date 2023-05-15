@@ -71,17 +71,7 @@ upf:
 #                  - cluster-autoscaling-ng
 #
 #    # ensure each node in the "cluster-autoscaling-ng" node group only has one UPF
-  podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-            - key: app.kubernetes.io/name
-              operator: In
-              values:
-                - upf
-        topologyKey: kubernetes.io/hostname
-        namespaces:
-          - openverso
+
 # uncomment below line to select single node
 #  nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
 
@@ -105,6 +95,17 @@ upf:
             operator: In
             values:
             - upf-bedc-large
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - upf
+          topologyKey: kubernetes.io/hostname
+          namespaces:
+            - openverso
 
 
 nssf:
