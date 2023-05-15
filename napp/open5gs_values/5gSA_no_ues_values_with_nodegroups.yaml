@@ -58,7 +58,7 @@ udm:
   nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 upf:
-  replicaCount: 2
+  replicaCount: 1
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -67,7 +67,7 @@ upf:
           - key: upfInstanceSize
             operator: In
             values:
-            - Large
+            - Small
 
 nssf:
   config:
