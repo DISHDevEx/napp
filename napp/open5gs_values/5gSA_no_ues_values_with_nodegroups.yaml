@@ -58,27 +58,33 @@ udm:
   nodeSelector: {eks.amazonaws.com/nodegroup : control_plane}
 
 upf:
-  replicaCount: 2
-# uncomment below lines to add topology spread constraints for scheduling pods
-#  topologySpreadConstraints:
-#  - maxSkew: 1
-#    topologyKey: kubernetes.io/hostname
-#    whenUnsatisfiable: DoNotSchedule
-#    labelSelector:
-#      matchLabels:
-#        app.kubernetes.io/instance: open5gs
-#        app.kubernetes.io/name: upf
-#        helm.sh/chart: upf-2.0.6
-  # affinity logic to deploy pods in multiple nodegroups
+  # number of UPF pods to be created
+  replicaCount: 3
+  
   affinity:
+    # ensure each UPF is only scheduled to nodes in the "cluster-autoscaling-ng" node group
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
-        - matchExpressions:
-          - key: upfInstanceSize
-            operator: In
-            values:
-            - Large
+            - matchExpressions:
+              - key: eks.amazonaws.com/nodegroup
+                operator: In
+                values:
+                  - cluster-autoscaling-ng
+
+    # ensure only one UPF pod is scheduled to each node
+    podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - upf
+              topologyKey: kubernetes.io/hostname
+              namespaces:
+                - openverso
+
 
 nssf:
   config:
