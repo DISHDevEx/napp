@@ -104,7 +104,7 @@ upf:
           - key: eks.amazonaws.com/nodegroup
             operator: In
             values:
-            - upf-rdc-large
+            - upf-bedc-large
 
 
 nssf:
