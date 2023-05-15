@@ -101,10 +101,10 @@ upf:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: upfInstanceSize
+          - key: eks.amazonaws.com/nodegroup
             operator: In
             values:
-            - Large
+            - upf-bedc-large
 
 
 nssf:
