@@ -59,7 +59,7 @@ udm:
 
 upf:
   # number of UPF pods to be created
-  replicaCount: 3
+  replicaCount: 4
   
   affinity:
     # ensure each UPF is only scheduled to nodes in the "cluster-autoscaling-ng" node group
