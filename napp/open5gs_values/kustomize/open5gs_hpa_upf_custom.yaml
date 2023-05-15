@@ -1,0 +1,27 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    meta.helm.sh/release-name: open5gs
+    meta.helm.sh/release-namespace: openverso
+#  creationTimestamp: "2023-04-28T18:36:39Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: open5gs-upf
+  namespace: openverso
+#  resourceVersion: "371407"
+#  uid: 4ebfda4e-f305-44da-bee6-46019b858a84
+spec:
+  maxReplicas: 4
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 80
+        type: Utilization
+    type: Resource
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: open5gs-upf

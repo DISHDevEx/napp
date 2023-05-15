@@ -2,9 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - release.yaml
+  - open5gs_hpa_upf_custom.yaml
 configMapGenerator:
   - name: custom-values
     files:
-      - values.yaml=../5gSA_ues_values.yaml
+      - values.yaml=../5gSA_no_ues_values.yaml
+
 configurations:
   - kustomizeconfig.yaml
