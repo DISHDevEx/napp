@@ -58,7 +58,7 @@ udm:
   nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
 
 upf:
-  replicaCount: 3
+  replicaCount: 1
 #  # ensure each UPF is only scheduled to nodes in the "cluster-autoscaling-ng" node group
 #  affinity:
 #    nodeAffinity:
