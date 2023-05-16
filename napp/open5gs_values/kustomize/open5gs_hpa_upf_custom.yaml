@@ -12,7 +12,7 @@ metadata:
 #  resourceVersion: "371407"
 #  uid: 4ebfda4e-f305-44da-bee6-46019b858a84
 spec:
-  maxReplicas: 5
+  maxReplicas: 4
   metrics:
   - resource:
       name: cpu
@@ -20,7 +20,7 @@ spec:
         averageUtilization: 80
         type: Utilization
     type: Resource
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment

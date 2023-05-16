@@ -35,13 +35,13 @@ Add more load cases, or update previous load case parameters.
 ```console
 python ue_populate_creation.py
 ```
-    
+
 2. Create scripts that emulate ping requests by those UEs.
 ```console
 python ping_test_creation.py
 ```
-    
-3. Create scripts that emulate CURL requests by those UEs. 
+
+3. Create scripts that emulate CURL requests by those UEs.
 ```console
 python curl_test_creation.py
 ```
@@ -62,14 +62,14 @@ helm -n openverso install open5gs openverso/open5gs --version 2.0.9 --values htt
     kubectl -n openverso exec -ti deployment/open5gs-populate -- /bin/bash
     ```
     2b. Run population script.
-    
-    Paste contents of `openverso-charts/respons_ue_test_kit/simulation_scripts/ue_populate.sh` inside the terminal for the populate pod. 
-    
-    2c. View the populated list. 
+
+    Paste contents of `openverso-charts/respons_ue_test_kit/simulation_scripts/ue_populate.sh` inside the terminal for the populate pod.
+
+    2c. View the populated list.
     ```console
     open5gs-dbctl showpretty
     ```
-    
+
     When complete, `exit` the populate pod's terminal.
 
 3. Install gNB in the namespace openverso. (1 minute)
@@ -112,11 +112,11 @@ From within the pod for the UEs, use the Openg5Gs provided a command to see all 
 ```console
 nr-cli --dump
 ```
-It may be that not all of these UEs was connected. View the networking information for the UEs. 
+It may be that not all of these UEs was connected. View the networking information for the UEs.
 ```console
 ip addr
 ```
-- Each connected UE has a container networking interface (CNI) `uesimtun{number}` as a network infterface card (NIC). Each NIC has IPv4 and IPv6 addresses. 
+- Each connected UE has a container networking interface (CNI) `uesimtun{number}` as a network infterface card (NIC). Each NIC has IPv4 and IPv6 addresses.
 
 ### Enter the terminal of a UE
 
@@ -124,19 +124,19 @@ If the IMSI 999700000000001 is on eof the registered UEs, then enter the CLI for
 ```bash
 nr-cli imsi-999700000000001
 ```
-List the available commands with `commands`. 
+List the available commands with `commands`.
 
-View the PDU session set up for this UE with `ps-list`. Note that 
+View the PDU session set up for this UE with `ps-list`. Note that
 - the session type connects this UE to the data network (access point name, APN) called `internet`.
-- The single network slice selection assistance information (S-NSSAI) says that 
+- The single network slice selection assistance information (S-NSSAI) says that
     -   the slice is of slice service type 1, meaning enhanced mobile broadband, eMBB.
-    -   the slice is differentiated by other slices of that type by the slice differentiator (SD) number 0x111111. 
-- the aggregate maximum bit rate is set to 1Gbps for both uplink and downlink; this is the anticipated maximum sum of data flow rates for all quality of service flows (QoS flows) for the UE that are not of the guraranteed flow rate (GFR) type. 
+    -   the slice is differentiated by other slices of that type by the slice differentiator (SD) number 0x111111.
+- the aggregate maximum bit rate is set to 1Gbps for both uplink and downlink; this is the anticipated maximum sum of data flow rates for all quality of service flows (QoS flows) for the UE that are not of the guraranteed flow rate (GFR) type.
 
 press `control+c` to exit the terminal of the UE.
 
 ### Run curl/ping tests
-To run curl or ping tests via UEs, have the terminals for the UE pods open from the previous step. 
+To run curl or ping tests via UEs, have the terminals for the UE pods open from the previous step.
 
 paste the contents of either of the following files (inside the terminal for an UE pod):
 
@@ -146,11 +146,29 @@ respons_ue_test_kit/simulation_scripts/curl.sh
 respons_ue_test_kit/simulation_scripts/ping.sh
 ```
 
+### Traffic Sim Automator & Process killer Setup
+Traffic sim is automated using kubernetes cronjob, below link provides steps on how to setup a cronjob.
+https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+
+Traffic sim cronjob needs access to all the pods in the cluster. Service account, clusterrole and clusterrolebinding objects need to be created to get the required access for the cronjob.
+
+Run the top 3 commands only once when you are setting up the cronjob's in new cluster.
+```console
+kubectl apply -f traffic_sim_serviceaccount.yaml
+
+kubectl apply -f traffic_sim_clusterrole.yaml
+
+kubectl apply -f traffic_sim_clusterolebinding.yaml
+
+kubectl apply -f traffic_sim_cronjob.yaml
+
+kubectl apply -f process_killer_cronjob.yaml
+```
 
 ### Trouble shooting section
-Often times with such a large amount of UE's deployed in the app, you may face common issues such as segementation faults. 
+Often times with such a large amount of UE's deployed in the app, you may face common issues such as segementation faults.
 
-Try restarting certain applications to get them back online and connected 
+Try restarting certain applications to get them back online and connected.
 
 ```console
 kubectl rollout restart deployment ueransim-gnb -n openverso

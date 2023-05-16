@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: process-killer
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: traffic-sim
+          containers:
+          - name: load
+            image: juampynr/digital-ocean-cronjob:latest
+            command: ["/bin/bash","-c"]
+            args:
+               - |
+                 apt-get update -y
+                 apt-get install -y iputils-ping
+                 which ping
+                 kubectl -n openverso exec -i deployment/ueransim-ues-first-batch -- /bin/bash -c "pgrep -f 'ping' | xargs kill -15"
+          restartPolicy: OnFailure

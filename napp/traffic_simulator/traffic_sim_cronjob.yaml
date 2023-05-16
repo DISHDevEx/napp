@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: traffic-sim-automator
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: traffic-sim
+          containers:
+          - name: load
+            image: juampynr/digital-ocean-cronjob:latest
+            command: ["/bin/bash","-c"]
+            args:
+               - |
+                 apt-get update -y
+                 apt-get install -y iputils-ping
+                 which ping
+                 kubectl -n openverso exec -i deployment/ueransim-ues-first-batch -- /bin/bash -c "ping -I uesimtun0 foxnews.com  -s 60000 -i 5 -c 10000 &
+                 ping -I uesimtun1 bostonherald.com  -s 60000 -i 4 -c 10000 &
+                 ping -I uesimtun2 washingtonpost.com  -s 60000 -i 5 -c 10000 &
+                 ping -I uesimtun3 washingtonpost.com  -s 60000 -i 5 -c 10000 &
+                 ping -I uesimtun4 buzzfeed.com  -s 60000 -i 1 -c 10000 &
+                 ping -I uesimtun5 indiatimes.com  -s 60000 -i 10 -c 10000 &
+                 ping -I uesimtun6 buzzfeed.com  -s 60000 -i 6 -c 10000 &
+                 ping -I uesimtun7 bostonherald.com  -s 60000 -i 3 -c 10000 &
+                 ping -I uesimtun8 reuters.com  -s 60000 -i 4 -c 10000 &
+                 ping -I uesimtun9 indiatimes.com  -s 60000 -i 10 -c 10000 &
+                 ping -I uesimtun10 nbc.com  -s 60000 -i 1 -c 10000 &
+                 ping -I uesimtun11 reuters.com  -s 60000 -i 8 -c 10000"
+          restartPolicy: OnFailure
