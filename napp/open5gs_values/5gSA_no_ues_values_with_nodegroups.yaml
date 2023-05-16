@@ -59,18 +59,6 @@ udm:
 
 upf:
   replicaCount: 1
-#  # ensure each UPF is only scheduled to nodes in the "cluster-autoscaling-ng" node group
-#  affinity:
-#    nodeAffinity:
-#      requiredDuringSchedulingIgnoredDuringExecution:
-#        nodeSelectorTerms:
-#            - matchExpressions:
-#              - key: eks.amazonaws.com/nodegroup
-#                operator: In
-#                values:
-#                  - cluster-autoscaling-ng
-#
-#    # ensure each node in the "cluster-autoscaling-ng" node group only has one UPF
 
 # uncomment below line to select single node
 #  nodeSelector: {eks.amazonaws.com/nodegroup : upf-bedc-small}
@@ -95,14 +83,6 @@ upf:
             operator: In
             values:
             - Large
-    # nodeAffinity:
-    #   requiredDuringSchedulingIgnoredDuringExecution:
-    #     nodeSelectorTerms:
-    #     - matchExpressions:
-    #       - key: eks.amazonaws.com/nodegroup
-    #         operator: In
-    #         values:
-    #         - upf-bedc-large
     # podAntiAffinity:
     #   requiredDuringSchedulingIgnoredDuringExecution:
     #     - labelSelector:
