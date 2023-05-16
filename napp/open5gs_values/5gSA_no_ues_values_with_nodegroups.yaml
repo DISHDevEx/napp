@@ -95,17 +95,17 @@ upf:
             operator: In
             values:
             - upf-bedc-large
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - upf
-          topologyKey: kubernetes.io/hostname
-          namespaces:
-            - openverso
+    # podAntiAffinity:
+    #   requiredDuringSchedulingIgnoredDuringExecution:
+    #     - labelSelector:
+    #         matchExpressions:
+    #           - key: app.kubernetes.io/name
+    #             operator: In
+    #             values:
+    #               - upf
+    #       topologyKey: kubernetes.io/hostname
+    #       namespaces:
+    #         - openverso
 
 
 nssf:
