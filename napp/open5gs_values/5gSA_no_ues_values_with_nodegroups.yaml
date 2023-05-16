@@ -91,10 +91,18 @@ upf:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: eks.amazonaws.com/nodegroup
+          - key: upfInstanceSize
             operator: In
             values:
-            - upf-bedc-large
+            - Large
+    # nodeAffinity:
+    #   requiredDuringSchedulingIgnoredDuringExecution:
+    #     nodeSelectorTerms:
+    #     - matchExpressions:
+    #       - key: eks.amazonaws.com/nodegroup
+    #         operator: In
+    #         values:
+    #         - upf-bedc-large
     # podAntiAffinity:
     #   requiredDuringSchedulingIgnoredDuringExecution:
     #     - labelSelector:
