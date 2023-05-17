@@ -83,17 +83,17 @@ upf:
             operator: In
             values:
             - Large
-    # podAntiAffinity:
-    #   requiredDuringSchedulingIgnoredDuringExecution:
-    #     - labelSelector:
-    #         matchExpressions:
-    #           - key: app.kubernetes.io/name
-    #             operator: In
-    #             values:
-    #               - upf
-    #       topologyKey: kubernetes.io/hostname
-    #       namespaces:
-    #         - openverso
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - upf
+          topologyKey: kubernetes.io/hostname
+          namespaces:
+            - openverso
 
 
 nssf:
