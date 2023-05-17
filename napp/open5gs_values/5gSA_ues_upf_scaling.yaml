@@ -117,7 +117,7 @@ pcf:
   image:
     tag: 2.6.2
   mongodb:
-    enabled: true
+    enabled: false
 udm:
   enabled: true
   image:
@@ -127,4 +127,4 @@ udr:
   image:
     tag: 2.6.2
   mongodb:
-    enabled: true
+    enabled: false
