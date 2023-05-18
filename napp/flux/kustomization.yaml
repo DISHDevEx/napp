@@ -7,6 +7,6 @@ resources:
 configMapGenerator:
   - name: cluster-autoscaler-flags
     files:
-      - values.yaml=../5gSA_no_ues_values_with_nodegroups.yaml
+      - values.yaml=ca-values.yaml
 configurations:
   - kustomizeconfig.yaml
