@@ -41,5 +41,5 @@ spec:
         sourceRef:
           kind: HelmRepository
           name: cluster-autoscaler
-          namespace: m-and-m
+          namespace: openverso
 #    targetNamespace: m-and-m
