@@ -22,11 +22,11 @@ amf:
       - 1
   resources:
     limits:
-      cpu: 150m
-      memory: 11Mi
+      cpu: 100m
+      memory: 63Mi
     requests:
-      cpu: 90m
-      memory: 10Mi
+      cpu: 100m
+      memory: 59Mi
 hss:
   enabled: false
 mme:
@@ -43,7 +43,6 @@ pcrf:
   enabled: false
 populate:
   enabled: true
-
 sgwc:
   enabled: false
 sgwu:
