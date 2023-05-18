@@ -17,11 +17,8 @@ spec:
   chart:
     spec:
       chart: cluster-autoscaler
-      version: '4.0.x'
       sourceRef:
-        kind: <HelmRepository|GitRepository|Bucket>
-        name: podinfo
-        namespace: flux-system
+        kind: HelmRepository
+        name: cluster-autoscaler
+        namespace: m-and-m
       interval: 1m
-  values:
-    replicaCount: 2
