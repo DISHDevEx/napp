@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - release.yaml
   - open5gs_hpa_upf_custom.yaml
-  - cluster-autoscaler.yaml
 configMapGenerator:
   - name: custom-values
     files:
