@@ -37,7 +37,7 @@ spec:
     chart:
       spec:
         #chart.spec.chart specifies the chart from the source to be deployed
-        chart: cluster-autoscaler
+        chart: autoscaler/cluster-autoscaler
         sourceRef:
           kind: HelmRepository
           name: cluster-autoscaler
