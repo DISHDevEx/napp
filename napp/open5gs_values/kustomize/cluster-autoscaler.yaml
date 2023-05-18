@@ -1,11 +1,3 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: cluster-autoscaler
-  namespace: m-and-m
-spec:
-  interval: 1m
-  url: https://kubernetes.github.io/autoscaler
 
 ---
 
@@ -27,30 +19,9 @@ spec:
     spec:
       #chart.spec.chart specifies the chart from the source to be deployed
       #try changing spec.chart to cluster-autoscaler/cluster-autoscaler
-      chart: cluster-autoscaler
+      chart: cluster-autoscaler/cluster-autoscaler
       sourceRef:
         kind: HelmRepository
         name: cluster-autoscaler
-        namespace: openverso
-#    targetNamespace: m-and-m
-
----
-
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: cluster-autoscaler
-  namespace: m-and-m
-spec:
-  interval: 1m
-  path: "."
-  prune: true
-  sourceRef:
-    kind: HelmRepository
-    name: cluster-autoscaler
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: cluster-autoscaler
-      namespace: m-and-m
-  timeout: 1m
+        namespace: m-and-m
+    targetNamespace: m-and-m
