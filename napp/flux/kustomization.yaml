@@ -1,12 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: m-and-m
 resources:
-  - release.yaml
-  - open5gs_hpa_upf_custom.yaml
+  - ca-src.yaml
+  - ca-release.yaml
 configMapGenerator:
   - name: cluster-autoscaler-flags
     files:
-      - values.yaml=ca-values.yaml
-
+      - values.yaml=../5gSA_no_ues_values_with_nodegroups.yaml
 configurations:
   - kustomizeconfig.yaml
