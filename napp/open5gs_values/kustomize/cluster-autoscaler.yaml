@@ -1,6 +1,3 @@
-
----
-
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -19,7 +16,7 @@ spec:
     spec:
       #chart.spec.chart specifies the chart from the source to be deployed
       #try changing spec.chart to cluster-autoscaler/cluster-autoscaler
-      chart: cluster-autoscaler/cluster-autoscaler
+      chart: cluster-autoscaler
       sourceRef:
         kind: HelmRepository
         name: cluster-autoscaler
