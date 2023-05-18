@@ -22,7 +22,7 @@ spec:
     tag: open5gs-2.0.9
   url: https://github.com/Gradiant/openverso-charts
 
-  ---
+---
 
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
