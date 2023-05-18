@@ -13,3 +13,4 @@ spec:
       name: cluster-autoscaler
       namespace: m-and-m
   timeout: 2m
+  targetNamespace: m-and-m
