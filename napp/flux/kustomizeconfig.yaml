@@ -1,17 +1,8 @@
 ---
 
 nameReference:
-  kind: ConfigMap
+- kind: ConfigMap
   version: v1
-  metadata:
-    name: cluster-autoscaler-configmap
-#    name: {{.Release.Name}}
-#  data:
-#    autoDiscovery:
-#      clusterName: respons-nuances
-##      clusterName: {{.Values.autoDiscovery.clusterName}}
-#    awsRegion: us-east-1
-##    awsRegion: {{.Values.awsRegion}}
   fieldSpecs:
-    path: spec/valuesFrom/name
+  - path: spec/valuesFrom/name
     kind: HelmRelease
