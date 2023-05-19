@@ -1,7 +1,4 @@
 autoDiscovery:
   clusterName: respons-nuances
-
 awsRegion: us-east-1
-
-
 #    "cluster-autoscaler.kubernetes.io/scale-down-unneeded-time": "600s"
