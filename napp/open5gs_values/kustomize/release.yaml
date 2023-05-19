@@ -40,11 +40,11 @@ spec:
       interval: 5m
   valuesFrom:
   - kind: Secret
-    name: cluster-name
-    valuesKey: "respons-nuances"
+    name: cluster-autoscaler
+    valuesKey: autoDiscovery.clusterName
     targetPath: autoDiscovery.clusterName
   - kind: Secret
-    name: aws-region
-    valuesKey: "us-east-1"
+    name: cluster-autoscaler
+    valuesKey: awsRegion
     targetPath: awsRegion
   targetNamespace: default

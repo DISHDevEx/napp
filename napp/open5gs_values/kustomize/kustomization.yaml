@@ -7,6 +7,10 @@ configMapGenerator:
   - name: custom-values
     files:
       - values.yaml=../5gSA_no_ues_values_with_nodegroups.yaml
+secretGenerator:
+  - name: cluster-autoscaler
+    files:
+      - values.yaml=./ca-values.yaml
 
 configurations:
   - kustomizeconfig.yaml
