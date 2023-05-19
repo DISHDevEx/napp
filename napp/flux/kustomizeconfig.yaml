@@ -6,12 +6,12 @@ nameReference:
   metadata:
     name: cluster-autoscaler-configmap
 #    name: {{.Release.Name}}
-  data:
-    autoDiscovery:
-      clusterName: respons-nuances
-#      clusterName: {{.Values.autoDiscovery.clusterName}}
-    awsRegion: us-east-1
-#    awsRegion: {{.Values.awsRegion}}
+#  data:
+#    autoDiscovery:
+#      clusterName: respons-nuances
+##      clusterName: {{.Values.autoDiscovery.clusterName}}
+#    awsRegion: us-east-1
+##    awsRegion: {{.Values.awsRegion}}
   fieldSpecs:
     path: spec/valuesFrom/name
     kind: HelmRelease
