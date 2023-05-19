@@ -7,10 +7,10 @@ metadata:
 #  example of how to structure the flag to annotation conversion at link below:
 #  https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md
 #  https://alicegg.tech/2020/11/09/helm.html
-#  annotations:
+  annotations:
 ##    "cluster-autoscaler.kubernetes.io/scale-down-unneeded-time": "600s"
-#    "autoDiscovery.clusterName": "respons-nuances"
-#    "awsRegion": "us-east-1"
+    "autoDiscovery.clusterName": "respons-nuances"
+    "awsRegion": "us-east-1"
 
 spec:
   interval: 1m
@@ -22,7 +22,7 @@ spec:
         name: cluster-autoscaler
         namespace: m-and-m
       interval: 1m
-    valuesFile: "ca-values.yaml"
+#    valuesFile: "ca-values.yaml"
 #  valuesFrom:
 #    -kind: ConfigMap
 #    name: cluster-autoscaler-flags
