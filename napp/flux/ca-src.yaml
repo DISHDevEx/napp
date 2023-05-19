@@ -3,8 +3,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: openverso-custom-values
-  namespace: openverso
+  name: cluster-autoscaler
+  namespace: default
 spec:
   interval: 30s
   ref:
@@ -14,12 +14,10 @@ spec:
 ---
 
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: GitRepository
+kind: HelmRepository
 metadata:
-  name: gradiant-openverso-charts
-  namespace: openverso
+  name: cluster-autoscaler
+  namespace: default
 spec:
-  interval: 30s
-  ref:
-    tag: open5gs-2.0.9
-  url: https://github.com/Gradiant/openverso-charts
+  interval: 5m
+  url: https://kubernetes.github.io/autoscaler
