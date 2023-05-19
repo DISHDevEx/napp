@@ -8,8 +8,10 @@ nameReference:
 #    name: {{.Release.Name}}
   data:
     autoDiscovery:
-      clusterName: {{.Values.autoDiscovery.clusterName}}
-    awsRegion: {{.Values.awsRegion}}
+      clusterName: respons-nuances
+#      clusterName: {{.Values.autoDiscovery.clusterName}}
+    awsRegion: us-east-1
+#    awsRegion: {{.Values.awsRegion}}
   fieldSpecs:
     path: spec/valuesFrom/name
     kind: HelmRelease
