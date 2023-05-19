@@ -41,10 +41,10 @@ spec:
   valuesFrom:
   - kind: Secret
     name: cluster-name
-    valuesKey: respons-nuances
+    valuesKey: "respons-nuances"
     targetPath: autoDiscovery.clusterName
   - kind: Secret
     name: aws-region
-    valuesKey: us-east-1
+    valuesKey: "us-east-1"
     targetPath: awsRegion
   targetNamespace: default
