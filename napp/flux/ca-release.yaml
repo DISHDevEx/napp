@@ -22,6 +22,7 @@ spec:
         name: cluster-autoscaler
         namespace: m-and-m
       interval: 1m
-  valuesFrom:
-    -kind: ConfigMap
-    name: cluster-autoscaler-flags
+    valuesFile: "ca-values.yaml"
+#  valuesFrom:
+#    -kind: ConfigMap
+#    name: cluster-autoscaler-flags
