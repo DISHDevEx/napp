@@ -15,9 +15,11 @@ spec:
         kind: HelmRepository
         name: cluster-autoscaler
         namespace: default
-      valuesFiles:
-        - values.yaml
       interval: 5m
+  values:
+    autoDiscovery:
+      clusterName: respons-nuances
+    awsRegion: us-east-1
 #
 #  valuesFrom:
 #  - kind: Secret
