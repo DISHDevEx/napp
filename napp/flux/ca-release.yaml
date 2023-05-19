@@ -5,12 +5,9 @@ kind: HelmRelease
 metadata:
   name: cluster-autoscaler
   namespace: m-and-m
-#  annotations:
-#    # "cluster-autoscaler.kubernetes.io/scale-down-unneeded-time": "600s"
-#    autoDiscovery.clusterName: "respons-nuances"
-#    awsRegion: "us-east-1"
 spec:
   interval: 1m
+  releaseName: cluster-autoscaler
   chart:
     spec:
       chart: cluster-autoscaler
@@ -18,9 +15,7 @@ spec:
         kind: HelmRepository
         name: cluster-autoscaler
         namespace: m-and-m
-      interval: 1m
-#    valuesFile: "ca-values.yaml"
   valuesFrom:
-  - kind: ConfigMap
+  - kind: Secret
     name: cluster-autoscaler-flags
-    valuesKey: ca-values.yaml
+    # targetPath:
