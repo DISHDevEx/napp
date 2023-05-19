@@ -1,3 +1,5 @@
+---
+
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -17,3 +19,32 @@ spec:
     - kind: ConfigMap
       name: custom-values
   targetNamespace: openverso
+
+---
+
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cluster-autoscaler
+  namespace: default
+spec:
+  interval: 5m
+  releaseName: cluster-autoscaler
+  chart:
+    spec:
+      chart: cluster-autoscaler
+      sourceRef:
+        kind: HelmRepository
+        name: cluster-autoscaler
+        namespace: default
+      interval: 5m
+  valuesFrom:
+  - kind: Secret
+    name: cluster-name
+    valuesKey: respons-nuances
+    targetPath: autoDiscovery.clusterName
+  - kind: Secret
+    name: aws-region
+    valuesKey: us-east-1
+    targetPath: awsRegion
+  targetNamespace: default
