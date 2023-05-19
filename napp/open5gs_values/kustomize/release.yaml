@@ -40,11 +40,11 @@ spec:
       interval: 5m
   valuesFrom:
   - kind: Secret
-    name: cluster-autoscaler
+    name: default/cluster-autoscaler
     valuesKey: autoDiscovery.clusterName
     targetPath: autoDiscovery.clusterName
   - kind: Secret
-    name: cluster-autoscaler
+    name: default/cluster-autoscaler
     valuesKey: awsRegion
     targetPath: awsRegion
   targetNamespace: default
