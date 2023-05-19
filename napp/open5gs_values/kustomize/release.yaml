@@ -40,11 +40,11 @@ spec:
       interval: 5m
   valuesFrom:
   - kind: Secret
-    name: cluster-autoscaler
+    name: cluster-autoscaler-lookinghere
     valuesKey: autoDiscovery.clusterName
     targetPath: autoDiscovery.clusterName
   - kind: Secret
-    name: cluster-autoscaler
+    name: cluster-autoscaler-orhere
     valuesKey: awsRegion
     targetPath: awsRegion
   targetNamespace: openverso
