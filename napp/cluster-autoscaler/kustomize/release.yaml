@@ -16,10 +16,9 @@ spec:
         name: cluster-autoscaler
         namespace: default
       interval: 5m
-  values:
-    autoDiscovery:
-      clusterName: "respons-nuances"
-    awsRegion: "us-east-1"
+  valuesFrom:
+    - kind: ConfigMap
+      name: cluster-autoscaler
 #
 #  valuesFrom:
 #  - kind: Secret
