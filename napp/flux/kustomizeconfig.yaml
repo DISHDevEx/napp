@@ -1,12 +1,14 @@
+---
+
 nameReference:
-- kind: ConfigMap
+  kind: ConfigMap
   version: v1
   metadata:
-    name: {{ .Release.Name }}-configmap
+    name: {{.Release.Name}}
   data:
     autoDiscovery:
-      clusterName: {{ .Values.autoDiscovery.clusterName }}
-    awsRegion: {{ .Values.awsRegion }}
+      clusterName: {{.Values.autoDiscovery.clusterName}}
+    awsRegion: {{.Values.awsRegion}}
   fieldSpecs:
-  - path: spec/valuesFrom/name
+    path: spec/valuesFrom/name
     kind: HelmRelease
