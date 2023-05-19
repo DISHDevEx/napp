@@ -151,7 +151,7 @@ configMapGenerator:
     files:
       - values.yaml=../VALUES.yaml
 configurations:
-  - ca-kustomizeconfig.yaml
+  - kustomizeconfig.yaml
 ```
 
 ## 8. Build the *kustomizeconfig.yaml* file 
