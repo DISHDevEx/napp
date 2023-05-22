@@ -187,7 +187,7 @@ spec:
     kind: GitRepository
     name: cluster-autoscaler
     namespace: m-and-m
-  targetNamespace: default
+  targetNamespace: m-and-m
 
 ```
 
@@ -209,14 +209,14 @@ nameReference:
 
 ### 5. Create Custom Values file for Deployment
 
-Create and populate the ```napp/cluster-autoscaler/values.yaml``` file with the following custom values to be applied to the cluster-autoscaler Deployment:
+Create and populate the ```napp/cluster-autoscaler/values.yaml``` file with the following custom values to be applied to the cluster-autoscaler Deployment -- replace AWS REGION and YOUR CLUSTER NAME with the appropriate values:
 
 ```yaml
 ---
 
 autoDiscovery:
-  clusterName: "respons-nuances"
-awsRegion: "us-east-1"
+  clusterName: <YOUR CLUSTER NAME>
+awsRegion: <AWS REGION>
 
 # define scale-up/scale-down times
 cluster-autoscaler:
