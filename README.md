@@ -136,8 +136,10 @@
     ```
 
 
-
-
 ## Flux CD
 
-View the [Flux README](napp/flux/README.md) for documentation on the installation of Flux CD.
+View the [Flux README](napp/flux/README.md) for documentation on the installation of Flux CD and its use in NAPP.
+
+## Cluster-Autoscaling
+
+View the [cluster-autoscaling README](napp/cluster-autoscaler/README.md) for documentation on the implementation of cluster-autoscaling in NAPP.

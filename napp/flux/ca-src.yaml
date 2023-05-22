@@ -4,7 +4,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: cluster-autoscaler
-  namespace: default
+  namespace: m-and-m
 spec:
   interval: 30s
   ref:
@@ -17,7 +17,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: cluster-autoscaler
-  namespace: default
+  namespace: m-and-m
 spec:
   interval: 5m
   url: https://kubernetes.github.io/autoscaler
