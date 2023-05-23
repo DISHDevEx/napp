@@ -1,0 +1,16 @@
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-autoscaler
+  namespace: m-and-m
+spec:
+  interval: 30s
+  path: ./napp/cluster-autoscaler/kustomize
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: cluster-autoscaler
+    namespace: m-and-m
+  targetNamespace: m-and-m

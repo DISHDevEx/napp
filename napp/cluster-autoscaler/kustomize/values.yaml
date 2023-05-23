@@ -1,0 +1,14 @@
+---
+
+autoDiscovery:
+  clusterName: "respons-nuances"
+awsRegion: "us-east-1"
+
+# define scale-up/scale-down times
+cluster-autoscaler:
+  kubernetes:
+    # delay to scale down nodes after determined as "un-needed"
+    # default is 10min
+    io/scale-down-unneeded-time: "360s"
+    # ignore any daemonset activity on node when determining if "un-needed"
+    io/ignore-daemonsets-utilization: "true"
