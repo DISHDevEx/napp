@@ -1,6 +1,7 @@
-amf:
-  hostname: open5gs-amf-ngap
+name: ueransim-ues-first-batch
 
+count: 450
+initialMSISDN: '0000000001'
 mcc: '999'
 mnc: '70'
 key: 465B5CE8B199B49FAA5F0A2EE238A6BC
@@ -18,7 +19,4 @@ apnList:
       sd: "0x111111"
     emergency: false
 
-nodeSelector: {eks.amazonaws.com/nodegroup: gnb}
-
-ues:
-  enabled: false
+nodeSelector: {eks.amazonaws.com/nodegroup: ues}
