@@ -10,7 +10,7 @@ spec:
   releaseName: loki-stack
   chart:
     spec:
-      chart: grafana/loki-stack
+      chart: loki-stack
       sourceRef:
         kind: HelmRepository
         name: loki-stack
