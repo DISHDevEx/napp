@@ -87,11 +87,11 @@ For a more [in-depth description of these rules](https://kubernetes.io/docs/conc
 
 ***Note***:  This tutorial assumes that Flux CD and its constituent Components are already installed on the EKS cluster and running in the m-and-m namespace.
 
-To learn more about Flux, please review the [Flux CD README](../flux/README.md) on this repo, or review [the official Flux CD documentation](https://fluxcd.io).
+To learn more about Flux, please review the [Flux CD README](../../flux/README.md) on this repo, or review [the official Flux CD documentation](https://fluxcd.io).
 
 Instead of manually deploying the cluster-autoscaler Helm chart to the cluster, we will be letting Flux CD handle the deployment and monitoring of the cluster-autoscaler service.  The following steps walk through the process of performing this task with cluster-autoscaling, but this can be applied to nearly any K8s Deployment.
 
-If more indepth explanation is needed, reference [the Flux CD README](../flux/README.md). 
+If more indepth explanation is needed, reference [the Flux CD README](../../flux/README.md). 
 
 ### 1. General Flux Structure
 

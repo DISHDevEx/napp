@@ -1,0 +1,22 @@
+---
+
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: m-and-m
+spec:
+  interval: 5m
+  releaseName: loki-stack
+  chart:
+    spec:
+      chart: grafana/loki-stack
+      sourceRef:
+        kind: HelmRepository
+        name: loki-stack
+        namespace: m-and-m
+      interval: 5m
+  valuesFrom:
+    - kind: ConfigMap
+      name: loki-stack
+  targetNamespace: m-and-m

@@ -1,0 +1,23 @@
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: loki-stack
+  namespace: m-and-m
+spec:
+  interval: 30s
+  ref:
+    branch: pierce/log-infra-via-flux
+  url: https://github.com/DISHDevEx/napp
+
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: loki-stack
+  namespace: m-and-m
+spec:
+  interval: 5m
+  url: https://grafana.github.io/helm-charts
