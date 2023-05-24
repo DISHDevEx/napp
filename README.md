@@ -142,4 +142,4 @@ View the [Flux README](napp/flux/README.md) for documentation on the installatio
 
 ## Cluster-Autoscaling
 
-View the [cluster-autoscaling README](napp/Deployments/cluster-autoscaler/README.md) for documentation on the implementation of cluster-autoscaling in NAPP.
+View the [cluster-autoscaling README](napp/cluster-autoscaler/README.md) for documentation on the implementation of cluster-autoscaling in NAPP.
