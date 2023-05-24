@@ -1,7 +1,7 @@
 ---
 
 autoDiscovery:
-  clusterName: "respons-nuances"
+  clusterName: "respons-nuances-test"
 awsRegion: "us-east-1"
 
 # define scale-up/scale-down times
