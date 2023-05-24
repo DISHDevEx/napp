@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: agent-main
+    branch: pierce/log-infra-via-flux
   secretRef:
     name: flux-system
   url: ssh://git@github.com/DISHDevEx/napp
