@@ -98,7 +98,7 @@ metadata:
   namespace: openverso
 spec:
   interval: 30s
-  path: ./napp/open5gs/kustomize
+  path: ./napp/open5gs_values/kustomize
   prune: true
   sourceRef:
     kind: GitRepository

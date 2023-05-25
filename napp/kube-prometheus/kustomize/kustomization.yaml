@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - release.yaml
 configMapGenerator:
-  - name: cluster-autoscaler
+  - name: prom-stack
     files:
       - values.yaml=./values.yaml
 configurations:

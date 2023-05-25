@@ -1,23 +1,10 @@
 ---
 
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: GitRepository
-metadata:
-  name: prom-stack
-  namespace: m-and-m
-spec:
-  interval: 30s
-  ref:
-    branch: ${{ vars.BRANCH }}
-  url: https://github.com/DISHDevEx/napp
-
----
-
-apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: prom-stack
   namespace: m-and-m
 spec:
   interval: 5m
-  url: https://grafana.github.io/helm-charts
+  url: https://charts.bitnami.com/bitnami
