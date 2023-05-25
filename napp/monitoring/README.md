@@ -48,7 +48,11 @@
     helm repo update
     ```
 
-5. Deploy Loki-Stack:
+5. Deploy Loki-Stack using the below directions or use deploy-prometheus.sh:
+
+    ```console 
+    sh deploy-prometheus.sh <cluster_name> <cluster_region> <cluster_namespace>
+    ```
 
     ```console
     helm upgrade --install loki-stack grafana/loki-stack \
