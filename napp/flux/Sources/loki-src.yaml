@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: pierce/log-infra-via-flux
+    branch: ${{ vars.BRANCH }}
   url: https://github.com/DISHDevEx/napp
 
 ---

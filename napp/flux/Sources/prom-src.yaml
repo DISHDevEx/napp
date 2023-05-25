@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: cluster-autoscaler
+  name: prom-stack
   namespace: m-and-m
 spec:
   interval: 30s
@@ -16,8 +16,8 @@ spec:
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: cluster-autoscaler
+  name: prom-stack
   namespace: m-and-m
 spec:
   interval: 5m
-  url: https://kubernetes.github.io/autoscaler
+  url: https://grafana.github.io/helm-charts

@@ -1,0 +1,16 @@
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: prom-stack
+  namespace: m-and-m
+spec:
+  interval: 30s
+  path: ./napp/kube-prometheus/kustomize
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: prom-stack
+    namespace: m-and-m
+  targetNamespace: m-and-m
