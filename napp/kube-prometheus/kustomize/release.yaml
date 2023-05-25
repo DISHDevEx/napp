@@ -3,7 +3,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: prometheus-storage-class
+  name: prometheus-storage-class-pierce-test
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp3
