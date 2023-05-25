@@ -3,20 +3,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: cluster-autoscaler
+  name: prom-stack
   namespace: m-and-m
 spec:
   interval: 5m
-  releaseName: cluster-autoscaler
+  releaseName: prom-stack
   chart:
     spec:
-      chart: cluster-autoscaler
+      chart: kube-prometheus
       sourceRef:
         kind: HelmRepository
-        name: cluster-autoscaler
+        name: prom-stack
         namespace: m-and-m
       interval: 5m
   valuesFrom:
     - kind: ConfigMap
-      name: cluster-autoscaler
+      name: prom-stack
   targetNamespace: m-and-m
