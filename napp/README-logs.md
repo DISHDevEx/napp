@@ -41,21 +41,14 @@
     kubectl config set-context --current --namespace=<cluster_namespace>
     ```
 
-4. Follow the below steps or use script deploy-loki.sh:
-
-```console 
-
-sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace 
-```
-
-5. Add Loki-Stack to helm:
+4. Add Loki-Stack to helm:
 
     ```console
     helm repo add grafana https://grafana.github.io/helm-charts
     helm repo update
     ```
 
-6. Deploy Loki-Stack:
+5. Deploy Loki-Stack:
 
     ```console
     helm upgrade --install loki-stack grafana/loki-stack \
@@ -70,24 +63,24 @@ sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace
       
     ```
 
-7. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
+6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
 
     ```console
     kubectl get secret --namespace <cluster_namespace> loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
     ```
 
-8. Port Forward Grafana:
+7. Port Forward Grafana:
 
     ```console
     kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 3000:80
     ```
 
-9. In your browser, go to localhost:3000 and login with:
+8. In your browser, go to localhost:3000 and login with:
     - username: admin
     - password: <password from step 6>
 
 
-10. Select add first data source and use: http://loki-stack:3100/
+9. Select add first data source and use: http://loki-stack:3100/
 
     - Go to the explore page and select your data source. 
     - Documentation exists here: https://grafana.com/docs/loki/latest/logql/
