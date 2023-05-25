@@ -62,7 +62,7 @@ sh ./deploy-loki.sh cluster_name cluster_region cluster_namespace
     --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
     ```
  
-    6.1 Update Values of Fluentbit and Loki with custom values for application, host, dataplane and control plane configurations:
+    6.1 If updating Values of Fluentbit and Loki with custom values:
 
     ```console
 
@@ -152,7 +152,7 @@ Create a user to authenticate the S3 bucket.
 Please reach out if necessary to create another user.
 ```
 
-2. Alter S3 bucket configuration as needed- specific details for our team are not in this repo:
+2. Alter S3 bucket configuration as needed.
 
 ```console
 
@@ -167,7 +167,7 @@ prefix: <bucket_prefix>
 ```
 
 3. Alter values file as necessary. The following edits have been made: 
--enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus operator storage config, enabled prometheus persistence and gave storage class name, and changed scraping interval from the default 1m to 30s. We can change replicas of prometheus to 2 and sharding for better query performance in the future.
+-enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus storage config, enabled prometheus persistence and gave storage class name, and changed scraping interval from the default 1m to 30s, removed prometheus operator and enabled prometheus to scrape node labels. We can change replicas of prometheus to 2 and sharding for better query performance in the future.
 
 4. Follow the below steps or utilize deploy-prometheus.sh:
 
