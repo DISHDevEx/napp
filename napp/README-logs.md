@@ -173,7 +173,7 @@ prefix: <bucket_prefix>
 
 ```console 
 
-sh ./deploy-prometheus.sh cluster_name cluster_region cluster_namespace 
+sh ./deploy-prometheus.sh <cluster_name> <cluster_region> <cluster_namespace>
 
 ``` 
 
