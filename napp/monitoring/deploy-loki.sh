@@ -21,7 +21,7 @@ kubectl config set-context --current --namespace=$cluster_namespace
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm upgrade --install loki-stack grafana/loki-stack \
-    --set promtail.enabled=false,grafana.enabled=true
+    --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
 
 #update loki to include other types of logs
 
