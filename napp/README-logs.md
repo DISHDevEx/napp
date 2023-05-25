@@ -180,7 +180,7 @@ sh ./deploy-prometheus.sh <cluster_name> <cluster_region> <cluster_namespace>
 5. Create a storage class for prometheus to persist data:
 
 ```console
-kubectl apply -f <prom_storage_config_filepath> -n <cluster_namespace>
+kubectl apply -f <prometheus_storage_class_filepath> -n <cluster_namespace>
 ```
 
 6. Install Kube-Prometheus:
