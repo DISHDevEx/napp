@@ -60,8 +60,8 @@ operator:
     #BlockDuration: "3m"
   ## @param operator.enabled Deploy Prometheus Operator to the cluster
   ##
-  ##disabled prometheus operator- best for handling multiple prometheus instances
-  enabled: false
+  ##option to disable prometheus operator- best for handling multiple prometheus instances. needs to be true to initially deploy prometheus server
+  enabled: true
   ## Bitnami Prometheus Operator image version
   ## ref: https://hub.docker.com/r/bitnami/prometheus-operator/tags/
   ## @param operator.image.registry Prometheus Operator image registry
