@@ -1272,6 +1272,7 @@ prometheus:
     ## @param prometheus.thanos.objectStorageConfig Support mounting a Secret for the objectStorageConfig of the sideCar container.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/thanos.md
     ##CHANGED: added object storage config
+    ## S3 Bucket configuration
     objectStorageConfig:
        secretName: thanos-objstore-config
        secretKey: thanos.yaml

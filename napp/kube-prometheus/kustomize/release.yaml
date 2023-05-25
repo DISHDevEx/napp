@@ -1,5 +1,18 @@
 ---
 
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: prometheus-storage-class
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp3
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+volumeBindingMode: Immediate
+
+---
+
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
