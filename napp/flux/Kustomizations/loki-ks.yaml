@@ -11,6 +11,6 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: loki-stack
+    name: napp
     namespace: m-and-m
   targetNamespace: m-and-m
