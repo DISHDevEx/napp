@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: agent-main
+    branch: agent-dqn
   url: https://github.com/DISHDevEx/napp
 
 ---
