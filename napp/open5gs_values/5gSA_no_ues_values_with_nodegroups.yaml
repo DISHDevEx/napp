@@ -73,15 +73,15 @@ upf:
             operator: In
             values:
             - Small
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - upf
-          topologyKey: kubernetes.io/hostname
+#    podAntiAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        - labelSelector:
+#            matchExpressions:
+#              - key: app.kubernetes.io/name
+#                operator: In
+#                values:
+#                  - upf
+#          topologyKey: kubernetes.io/hostname
 
 nssf:
   config:
@@ -101,4 +101,4 @@ webui:
 
 populate:
   enabled: true
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}###
