@@ -91,7 +91,6 @@
     - Here is an example query; {container="gnodeb"} |= "UE[111]"
     - HINTS: Edit your queries outside of grafana and paste inside- otherwise you might run into errors. Execute with shift + return. 
 
-
 ### Deploy Prometheus Stack
 Here are links to some of the available metrics: 
 - https://kubernetes.io/docs/reference/instrumentation/metrics/ 
@@ -145,9 +144,6 @@ Create an IAM policy to attach to Role used by worker nodes.
     ```
 
 Create a user to authenticate the S3 bucket.
-```console
-Please reach out if necessary to create another user.
-```
 
 2. Alter S3 bucket configuration as needed.
 
@@ -166,7 +162,7 @@ prefix: <bucket_prefix>
 3. Alter values file as necessary. The following edits have been made: 
 -enabled thanos sidecar creation, disabled compaction, changed retention days from 10 to 7, added prometheus storage config, enabled prometheus persistence and gave storage class name, and changed scraping interval from the default 1m to 30s, removed prometheus operator and enabled prometheus to scrape node labels. We can change replicas of prometheus to 2 and sharding for better query performance in the future.
 
-4. Follow the below steps or utilize deploy-prometheus.sh:
+4. Follow the below steps OR utilize deploy-prometheus.sh:
 
 ```console 
 
@@ -233,8 +229,103 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
 
         - Could utilize grafana dashboard Kubernetes / Networking / Pod: ID 12661
 
+## Deploy the Loki-Stack that includes FluentBit, Loki and Grafana:
 
-13. How to read these blocks in S3:
+1. Update local kubectl config file:
+
+    ```console
+    aws eks --region <aws_region> update-kubeconfig --name <cluster_name>
+    ```
+
+    (do this every time you want to talk to a new cluster)
+
+2. Ensure your config file is set up correctly:
+
+    ```console
+    aws eks --region <aws_region> describe-cluster --name <cluster_name> --query cluster.status
+    ```
+
+3. Set relevant namespace as context:
+    
+    ```console
+    kubectl config set-context --current --namespace=<cluster_namespace>
+    ```
+
+4. Deploy Loki-Stack using the below directions or use deploy-prometheus.sh:
+
+    ```console 
+    sh deploy-loki.sh <cluster_name> <cluster_region> <cluster_namespace>
+    ```
+
+    ```console
+    helm upgrade --install loki-stack grafana/loki-stack \
+    --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
+    ```
+
+5. Add Loki-Stack to helm:
+
+    ```console
+    helm repo add grafana https://grafana.github.io/helm-charts
+    helm repo update
+    ```
+
+6. Retrieve the IP address for the loki server:
+
+    ```
+    LokiHost=$(kubectl get pod loki-stack-0 --template '{{.status.podIP}}')
+    ```
+
+7. Create a configuration map for fluentbit:
+
+    ```
+    ClusterName=$cluster_name
+    RegionName=$cluster_region
+    LokiHost=$LokiHost
+    FluentBitHttpPort='2020'
+    FluentBitReadFromHead='Off'
+    [[ ${FluentBitReadFromHead}='On' ]] && FluentBitReadFromTail='Off'|| FluentBitReadFromTail='On'
+    [[ -z ${FluentBitHttpPort} ]] && FluentBitHttpServer='Off' || FluentBitHttpServer='On'
+    kubectl create configmap fluent-bit-cluster-info \
+    --from-literal=cluster.name=${ClusterName} \
+    --from-literal=loki.host=${LokiHost} \
+    --from-literal=http.server=${FluentBitHttpServer} \
+    --from-literal=http.port=${FluentBitHttpPort} \
+    --from-literal=read.head=${FluentBitReadFromHead} \
+    --from-literal=read.tail=${FluentBitReadFromTail} \
+    --from-literal=logs.region=${RegionName} -n $cluster_namespace 
+    ```
+
+8. Deploy fluentbit:
+    ```
+    kubectl apply -f $custom_fb_values_filepath
+    ```
+
+6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
+
+    ```console
+    kubectl get secret --namespace <cluster_namespace> loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+    ```
+
+7. Port Forward Grafana:
+
+    ```console
+    kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 3000:80
+    ```
+
+8. In your browser, go to localhost:3000 and login with:
+    - username: admin
+    - password: <password from step 6>
+
+
+9. Select add first data source and use: http://loki-stack:3100/
+
+    - Go to the explore page and select your data source. 
+    - Documentation exists here: https://grafana.com/docs/loki/latest/logql/
+    - Here is an example query; {container="gnodeb"} |= "UE[111]"
+    - HINTS: Edit your queries outside of grafana and paste inside- otherwise you might run into errors. Execute with shift + return. 
+
+
+### How to read prometheus metrics stored blocks in S3:
     1. download go https://go.dev/dl/
     2. we will be utilizing this to create the nested jsons: https://github.com/ryotarai/prometheus-tsdb-dump/tree/master so follow the installation instructions:
 
