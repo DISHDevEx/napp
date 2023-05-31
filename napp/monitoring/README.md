@@ -177,7 +177,7 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
 
     ```console
     helm upgrade --install loki-stack grafana/loki-stack \
-    --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
+    --set promtail.enabled=false,grafana.enabled=true
     ```
 
 4. Add Loki-Stack to helm:
