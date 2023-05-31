@@ -72,7 +72,7 @@ upf:
           - key: upfInstanceSize
             operator: In
             values:
-            - Small
+            - Large
 #    podAntiAffinity:
 #      requiredDuringSchedulingIgnoredDuringExecution:
 #        - labelSelector:
