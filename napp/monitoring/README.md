@@ -243,46 +243,8 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
     - HINTS: Edit your queries outside of grafana and paste inside- otherwise you might run into errors. Execute with shift + return. 
 
 
-### How to read prometheus metrics stored blocks in S3:
-    1. download go https://go.dev/dl/
-    2. we will be utilizing this to create the nested jsons: https://github.com/ryotarai/prometheus-tsdb-dump/tree/master so follow the installation instructions:
-
-    ```console
-    git clone https://github.com/ryotarai/prometheus-tsdb-dump.git
-    cd prometheus-tsdb-dump
-    make build
-    ```
-
-    3. Exploring from local- utiilize the path to the folder of the S3 block that might look similar to "01GZ1XX33XFGEMKP8Q92WFTZ8" then run:
-
-    ```console
-    go run main.go -block <file path to TSDB folder> -format victoriametrics > metrics.json
-    ```
 
 
-### Deploy Kube Eagle
-Pre-requisites: 
-kube-metrics-server must exist. If needed, deploy in the right cluster and m-and-m namespace. Metrics server may already exists for prometheus but will be named slightly differently. 
-
-    ```console
-    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-    ```
-
-1. Guarantee you are in the right cluster and m-and-m namespace and then add the kube-eagle helm chart:
-
-    ```console
-    helm repo add kube-eagle https://raw.githubusercontent.com/cloudworkz/kube-eagle-helm-chart/master
-    ```
-2. helm update:
-
-    ```console
-    helm repo update
-    ```
-3. Install Kube Eagle:
-
-    ```console
-    helm install kube-eagle kube-eagle/kube-eagle
-    ```
 
 
 
