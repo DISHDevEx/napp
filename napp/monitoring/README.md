@@ -13,83 +13,7 @@
 
 
 2. Set up your local AWS CLI Environment Variables.
-
-3. Create an EKS Cluster:
-
-    Recommended settings: https://dish-wireless-network.atlassian.net/wiki/spaces/MSS/pages/427327690/Network+as+an+APP+deployment
     
-
-### Deploy the Loki-Stack that includes FluentBit, Loki and Grafana:
-
-1. Update local kubectl config file:
-
-    ```console
-    aws eks --region <aws_region> update-kubeconfig --name <cluster_name>
-    ```
-
-    (do this every time you want to talk to a new cluster)
-
-2. Ensure your config file is set up correctly:
-
-    ```console
-    aws eks --region <aws_region> describe-cluster --name <cluster_name> --query cluster.status
-    ```
-
-3. Set relevant namespace as context:
-    
-    ```console
-    kubectl config set-context --current --namespace=<cluster_namespace>
-    ```
-
-4. Add Loki-Stack to helm:
-
-    ```console
-    helm repo add grafana https://grafana.github.io/helm-charts
-    helm repo update
-    ```
-
-5. Deploy Loki-Stack using the below directions or use deploy-prometheus.sh:
-
-    ```console 
-    sh deploy-prometheus.sh <cluster_name> <cluster_region> <cluster_namespace>
-    ```
-
-    ```console
-    helm upgrade --install loki-stack grafana/loki-stack \
-    --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
-    ```
- 
-    6.1 If updating Values of Fluentbit and Loki with custom values:
-
-    ```console
-
-    helm upgrade loki-stack -f <install_values_filepath> grafana/loki-stack -n <cluster_namespace>
-      
-    ```
-
-6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
-
-    ```console
-    kubectl get secret --namespace <cluster_namespace> loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-    ```
-
-7. Port Forward Grafana:
-
-    ```console
-    kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 3000:80
-    ```
-
-8. In your browser, go to localhost:3000 and login with:
-    - username: admin
-    - password: <password from step 6>
-
-
-9. Select add first data source and use: http://loki-stack:3100/
-
-    - Go to the explore page and select your data source. 
-    - Documentation exists here: https://grafana.com/docs/loki/latest/logql/
-    - Here is an example query; {container="gnodeb"} |= "UE[111]"
-    - HINTS: Edit your queries outside of grafana and paste inside- otherwise you might run into errors. Execute with shift + return. 
 
 ### Deploy Prometheus Stack
 Here are links to some of the available metrics: 
@@ -166,7 +90,7 @@ prefix: <bucket_prefix>
 
 ```console 
 
-sh ./deploy-prometheus.sh <cluster_name> <cluster_region> <cluster_namespace>
+sh deploy-prometheus.sh <cluster_name> <cluster_region> <cluster_namespace>
 
 ``` 
 
@@ -239,19 +163,13 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
 
     (do this every time you want to talk to a new cluster)
 
-2. Ensure your config file is set up correctly:
-
-    ```console
-    aws eks --region <aws_region> describe-cluster --name <cluster_name> --query cluster.status
-    ```
-
-3. Set relevant namespace as context:
+2. Set relevant namespace as context:
     
     ```console
     kubectl config set-context --current --namespace=<cluster_namespace>
     ```
 
-4. Deploy Loki-Stack using the below directions or use deploy-prometheus.sh:
+3. Deploy Loki-Stack using the below directions or use deploy-loki.sh:
 
     ```console 
     sh deploy-loki.sh <cluster_name> <cluster_region> <cluster_namespace>
@@ -262,20 +180,20 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
     --set fluent-bit.enabled=true,promtail.enabled=false,grafana.enabled=true
     ```
 
-5. Add Loki-Stack to helm:
+4. Add Loki-Stack to helm:
 
     ```console
     helm repo add grafana https://grafana.github.io/helm-charts
     helm repo update
     ```
 
-6. Retrieve the IP address for the loki server:
+5. Retrieve the IP address for the loki server:
 
     ```
     LokiHost=$(kubectl get pod loki-stack-0 --template '{{.status.podIP}}')
     ```
 
-7. Create a configuration map for fluentbit:
+6. Create a configuration map for fluentbit:
 
     ```
     ClusterName=$cluster_name
@@ -295,29 +213,29 @@ kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 
     --from-literal=logs.region=${RegionName} -n $cluster_namespace 
     ```
 
-8. Deploy fluentbit:
+7. Deploy fluentbit:
     ```
     kubectl apply -f $custom_fb_values_filepath
     ```
 
-6. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
+8. Get Password in Order to Connect Loki to Grafana and copy elsewhere:
 
     ```console
     kubectl get secret --namespace <cluster_namespace> loki-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
     ```
 
-7. Port Forward Grafana:
+9. Port Forward Grafana:
 
     ```console
     kubectl port-forward --namespace <cluster_namespace> service/loki-stack-grafana 3000:80
     ```
 
-8. In your browser, go to localhost:3000 and login with:
+10. In your browser, go to localhost:3000 and login with:
     - username: admin
     - password: <password from step 6>
 
 
-9. Select add first data source and use: http://loki-stack:3100/
+11. Select add first data source and use: http://loki-stack:3100/
 
     - Go to the explore page and select your data source. 
     - Documentation exists here: https://grafana.com/docs/loki/latest/logql/
