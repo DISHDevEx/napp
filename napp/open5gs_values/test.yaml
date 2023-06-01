@@ -23,10 +23,10 @@ amf:
   resources:
     limits:
       cpu: 100m
-      memory: 63Mi
+      memory: 41Mi
     requests:
       cpu: 100m
-      memory: 59Mi
+      memory: 38Mi
 hss:
   enabled: false
 mme:
