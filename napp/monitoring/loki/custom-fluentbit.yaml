@@ -239,7 +239,7 @@ data:
         region              ${AWS_REGION}
         total_file_size     500M
         upload_timeout      15m
-        s3_key_format       /host-logs/${CLUSTER_NAME}/${HOSTNAME}/%Y/%m/%d/%H/$UUID.gz
+        s3_key_format       /host-logs/${CLUSTER_NAME}/%Y/%m/%d/%H/$UUID.gz
         compression         gzip
     
     [OUTPUT]
