@@ -1,10 +1,15 @@
 # Flux CD
 
+## Table of Contents
+- [Installing Flux on Your Machine](#getting-started-with-flux)
+- [Managing a K8s Deployment with Flux](#managing-a-k8s-deployment-with-flux-cd)
+- [Suspend and Resume Flux Reconciliation](#suspend-and-resume-flux-reconciliation)
+
 ## Getting Started with Flux
 Use the below commands based on your operating system to install the latest version of Flux CLI on your local machine.
 ### macOS and Linux using Bash
 ```console
-curl -s https://fluxcd.io/install.sh | sudo bash
+brew install fluxcd/tap/flux
 ```
 ### Windows using Chocolatey
 ```console
@@ -283,4 +288,48 @@ flux get all -A
 Flux can quickly be uninstalled, and all associated resources freed, using the following command:
 ```console
 flux uninstall --keep-namespace -n <Desired Namespace>
+```
+
+## Suspend and Resume Flux Reconciliation
+
+### Suspend Flux Reconciliation
+At times, it may be useful to Suspend the monitoring and reconciliation of a specific aspect of Flux.  This can be accomplished by the use of ***suspend*** sub-command in Flux:
+```console
+flux suspend [command]
+```
+***Note:*** at anytime, ```flux --help``` or ```flux suspend --help``` can be used to give suggestion from Flux on how to proceed.
+
+The *[command]* field above can be replaced with any of the following Available Command options:
+
+- alert
+- helmrelease
+- image
+- kustomization
+- receiver
+- source
+
+For the purposes of NAPP and m-and-m, you will likely be looking to use the ***helmrelease*** command.  
+
+#### Example Use Case 
+As a developer, you would like to delete the **open5gs** Helm Deployment from a Flux managed cluster.  You would like to re-deploy **open5gs** with some different configurations.  However, when you simply issue ```helm uninstall open5gs```, Flux reconciles and redeploys **open5gs** within 30seconds (due to Flux settings).  This is a perfect use case for ```flux suspend```.
+
+Issue the following command to suspend / pause the reconciliation of the **open5gs** Helmrelease:
+
+```console
+flux suspend helmrelease open5gs -n <NAMESPACE_CONTAINING_OPEN5GS>
+```
+The **open5gs** deployment can now be removed and manipulated as you wish, without Flux reconciling and reinstalling every specified time interval.  The behaviour will persist until the [resume](#resume-flux-reconciliation) sub-command is issued.
+
+### Resume Flux Reconciliation
+
+To Resume reconciliation of an aspect of Flux that was previously Suspended, issue the following command:
+
+```console
+flux resume [command] <SUSPENDED_SERVICE> -n <NAMESPACE_OF_SUSPENDED_SERVICE>
+```
+
+For example, if **open5gs** was suspended as given in the [example above](#suspend-and-resume-flux-reconciliation), then the associated Resume command would be as follows:
+
+```console
+flux resume helmrelease open5gs -n <NAMESPACE_CONTAINING_OPEN5GS>
 ```
