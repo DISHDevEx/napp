@@ -79,7 +79,7 @@ upf:
           - key: upfInstanceSize
             operator: In
             values:
-            - Small
+            - Large
   replicaCount: 1
 webui:
   enabled: false
