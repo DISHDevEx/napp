@@ -104,3 +104,14 @@ core.18172
 dask-worker-space/
 *.parquet
 .env
+
+#terrafrom
+.terraform.lock.hcl
+.terragrunt-cache/
+.terraform/
+terraform.tfvars.json
+terraform.tfvars
+napp.tfvars
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
