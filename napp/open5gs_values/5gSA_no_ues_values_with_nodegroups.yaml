@@ -1,11 +1,11 @@
 ausf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 bsf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 nrf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 pcf:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 
 hss:
   enabled: false
@@ -20,7 +20,7 @@ smf:
   config:
     pcrf:
       enabled: false
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 
 sgwc:
   enabled: false
@@ -49,13 +49,13 @@ amf:
         s_nssai:
           - sst: 1
             sd: "0x111111"
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 
 udr:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 
 udm:
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 
 upf:
   replicaCount: 1
@@ -91,14 +91,14 @@ nssf:
           port: 7777
         sst: 1
         sd: "0x111111"
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 
 webui:
   enabled: false
   ingress:
     enabled: false
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}
 
 populate:
   enabled: true
-  nodeSelector: {eks.amazonaws.com/nodegroup : control-plane}
+  nodeSelector: {eks.amazonaws.com/nodegroup : iot-nap-nodes}

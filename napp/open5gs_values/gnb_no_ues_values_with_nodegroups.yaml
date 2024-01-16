@@ -6,7 +6,7 @@ mnc: '70'
 key: 465B5CE8B199B49FAA5F0A2EE238A6BC
 op: E8ED289DEBA952E4283B54E88E6183CA
 opType: OPC
-gnb:
+iot-nap-nodes:
   hostname: ueransim-gnb
 sst: 1
 sd: "0x111111"
@@ -18,7 +18,7 @@ apnList:
       sd: "0x111111"
     emergency: false
 
-nodeSelector: {eks.amazonaws.com/nodegroup: gnb}
+nodeSelector: {eks.amazonaws.com/nodegroup: iot-nap-nodes}
 
 ues:
   enabled: false
