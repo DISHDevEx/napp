@@ -30,4 +30,6 @@ spec:
                  ping -I uesimtun9 indiatimes.com  -s 60000 -i 10 -c 10000 &
                  ping -I uesimtun10 nbc.com  -s 60000 -i 1 -c 10000 &
                  ping -I uesimtun11 reuters.com  -s 60000 -i 8 -c 10000"
+            securityContext:
+              allowPrivilegeEscalation: false
           restartPolicy: OnFailure

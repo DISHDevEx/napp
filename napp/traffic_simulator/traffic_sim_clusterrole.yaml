@@ -6,3 +6,28 @@ rules:
   - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["*"]
+  - apiGroups: [ "admissionregistration.k8s.io" ]
+    resources: [ "mutatingwebhookconfigurations" ]
+    verbs:
+      - list
+  - apiGroups: [ "certificates.k8s.io" ]
+    resources: [ "certificatesigningrequests" ]
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups: ["certificates.k8s.io" ]
+    resources: [ "certificatesigningrequests/approval" ]
+    verbs: [ "update" ]
+  - apiGroups: [ "certificates.k8s.io" ]
+    resources: [ "signers" ]
+    verbs: [ "approve" ]
+  - apiGroups: [ "rbac.authorization.k8s.io" ]
+    resources: [ "roles", "clusterroles" ]
+    verbs: [ "get", "list", "create", "update" ]
+  - apiGroups: [ "rbac.authorization.k8s.io" ]
+    resources: [ "clusterrolebindings" ]
+    verbs: [ "bind" ]
+  - apiGroups: [ "rbac.authorization.k8s.io" ]
+    resources: [ "roles", "clusterrolebindings" ]
+    verbs: [ "get", "list", "create", "update" ]

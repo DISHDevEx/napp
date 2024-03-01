@@ -4,8 +4,15 @@ metadata:
   name: traffic-sim-global
 subjects:
   - kind: ServiceAccount
-    name: traffic-sim
-    namespace: default
+    metadata:
+      name: traffic-sim
+      namespace: default
+      annotations:
+        - authorization.k8s.io/impersonate: "false"",
+        - services/status/patch: "[]"",
+        - authorization.k8s.io/get: "[]""
+  - kind: Node
+    name: my-node
 roleRef:
   kind: ClusterRole
   name: traffic-sim
